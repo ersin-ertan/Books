@@ -14,8 +14,8 @@ package A_GettingStartedWithParsing.A_LanguageApplicationsCrackedOpen
 // then call a method which executes or translates them. For an interpreter, calling some implementation like assign() or
 // drawLine(). For translator, means printing an output statement based on symbols from the input sentence.
 
-// Commmon architecture create an AST from input (tree construction actions in the parser) instead of trying to process
-// the input on fly. Use AST to access input multiple times without repharsing it. Tree based interpreter revisits AST
+// Common architecture create an AST from input (tree construction actions in the parser) instead of trying to process
+// the input on fly. Use AST to access input multiple times without rephrasing it. Tree based interpreter revisits AST
 // nodes all the time as it executes while loops. AST can store information that we compute at various stages of app
 // pipeline. Annotate the AST with pointers into the symbol table, to tell what kind of symbols the AST node represents,
 // and if it is an expression, what the result type is.

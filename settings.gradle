@@ -1,4 +1,6 @@
 rootProject.name = 'Books'
 include 'Language Implementation Patterns'
 findProject(':Language Implementation Patterns')?.name = 'languageImplementationPatterns'
+include 'Kotlin In Action'
+findProject(':Kotlin In Action')?.name = 'kotlinInAction'
 

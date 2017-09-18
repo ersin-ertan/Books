@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Books.iml" filepath="$PROJECT_DIR$/.idea/modules/Books.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Books_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Books_main.iml" group="Books" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Books_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Books_test.iml" group="Books" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlinInAction.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlinInAction.iml" group="kotlinInAction" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Kotlin In Action/kotlinInAction_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Kotlin In Action/kotlinInAction_main.iml" group="kotlinInAction" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Kotlin In Action/kotlinInAction_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Kotlin In Action/kotlinInAction_test.iml" group="kotlinInAction" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/languageImplementationPatterns.iml" filepath="$PROJECT_DIR$/.idea/modules/languageImplementationPatterns.iml" group="languageImplementationPatterns" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Language Implementation Patterns/languageImplementationPatterns_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Language Implementation Patterns/languageImplementationPatterns_main.iml" group="languageImplementationPatterns" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Language Implementation Patterns/languageImplementationPatterns_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Language Implementation Patterns/languageImplementationPatterns_test.iml" group="languageImplementationPatterns" />

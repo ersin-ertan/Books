@@ -2,7 +2,7 @@ package A_GettingStartedWithParsing.A_LanguageApplicationsCrackedOpen
 
 // Learn to recognize computer language(valid sentences), every language app has a parser(recognizer) lest it be code gen
 
-// Multiple components in a multistage pipline analyzing/manimpulating an input stream.
+// Multiple components in a multistage pipeline analyzing/manipulating an input stream.
 // Valid input sequence to internal data structure, or sentence of another language.
 // Reader recognizes input and builds an intermediate representation to feed the rest of the app.
 // Generator emits output based on the IR, and info from intermediate stages(semantic analyzer)
@@ -48,7 +48,7 @@ package A_GettingStartedWithParsing.A_LanguageApplicationsCrackedOpen
 
 
 // Walking Trees
-// Extract information/perform transformationsby traversing the IR/AST. Embed methods within each node class(Embedded
+// Extract information/perform transformations by traversing the IR/AST. Embed methods within each node class(Embedded
 // Heterogeneous Tree Walker) or encapsulate those methods in an external visitor(External Tree Visitor). We can automate
 // visitor construction like we do parser construction. Recognize with Tree Grammar, or Tree Pattern Matcher. A grammar
 // describes the entire structure of all valid trees. A Pattern matchers focus on just the subtrees.
@@ -71,7 +71,7 @@ package A_GettingStartedWithParsing.A_LanguageApplicationsCrackedOpen
 
 
 // Translating one language to another
-// Compilers to machine code. Finally after ranslation, a generator emits structured text or binary. Output is a function
+// Compilers to machine code. Finally after translation, a generator emits structured text or binary. Output is a function
 // of the input/semantic analysis. Reader and generator can be combined to a single pass if simple, else decouple the order
 // to compute output phrases from emittion.Generators conform to a language, thus use a formal language tool to emit strucuterd
 // text. An "unparser" template engine.
