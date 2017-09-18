@@ -1,2 +1,4 @@
 rootProject.name = 'Books'
+include 'Language Implementation Patterns'
+findProject(':Language Implementation Patterns')?.name = 'languageImplementationPatterns'
 
