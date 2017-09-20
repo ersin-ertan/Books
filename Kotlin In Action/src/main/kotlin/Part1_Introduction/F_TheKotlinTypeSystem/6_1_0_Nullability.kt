@@ -88,3 +88,28 @@ val h = f.let { theFIsNull -> println() } // not a safe call, thus 'it' or theFI
 val i = f?.let { theFIsNotNull -> println("else i wont run") }
 // extension functions can be non-null, but change to null iff it turns out it's used mostly on nullable values thus you
 // deal with null explicitly
+
+// Nullability of type parameters - by default Type params are nullable. Type need not end in ? to allow null
+
+fun <T> ea(t:T) = println(t.toString()) // t may be null, use ? safe call
+val j = ea(Int) // kotlin.jvm.internal.IntCompanionObject@7adf9f5f
+val k = ea(null)
+
+// to make it non null, specify n upper bound, which will reject the null type value
+fun <T:Any> ea(t:T, a:Int) {}
+
+//val m = ea(null, 1) // inferred type of Nothing? is not a subtype of Any
+val m = ea(Int, 1)
+
+// nullability and java - kotlin recognizes annotations, if none, java type becomes a platform type to which
+// none of kotlins standard checking is applied, and NullPointerExceptions can occur. Else consider them as null
+fun a(i:Integer) {
+    println(i.toString() ?: "i is null") // the else will not be ide grey if from java
+}
+
+// why platform types, compiler has no info, is at the expense of being overly cautious with null, requiring checks
+// everywhere, thus let developer implement. String! notation is a platform type from java code, syntax not allowed in kotlin
+
+
+// Inheritance - pitfalls of mixed kotlin and java hierarchies
+// overriding a java method in kotlin allows you the choice of a nullable or non null return type
