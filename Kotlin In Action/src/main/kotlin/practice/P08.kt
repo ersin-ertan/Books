@@ -1,13 +1,13 @@
 package practice
 
+private class P08 {
+    fun sum() = { x:Int, y:Int -> x + y }
+    val sum = { x:Int, y:Int -> x + y }
+    fun max() = { list:List<Int> -> list.max() }
 
-fun sum() = { x:Int, y:Int -> x + y }
-val sum = { x:Int, y:Int -> x + y }
-fun max() = { list:List<Int> -> list.max() }
+    fun Int.p() = println(this)
 
-fun Int.p() = println(this)
-
-fun main(args:Array<String>) {
+    fun main(args:Array<String>) {
 
 //    sumWhyd(1, 3, sum()).p()
 //    sumWhyd(1, 3, sum).p()
@@ -16,23 +16,23 @@ fun main(args:Array<String>) {
 
 //    val l = listOf<Int>(1, 3, 5)
 
-    runLambda()
-}
+        runLambda()
+    }
 
-fun sumWhyd(i:Int, y:Int, function:(Int, Int) -> Int):Int = Math.pow(function(i, y).toDouble(), y.toDouble()).toInt()
+    fun sumWhyd(i:Int, y:Int, function:(Int, Int) -> Int):Int = Math.pow(function(i, y).toDouble(), y.toDouble()).toInt()
 
-class AA(val a:Int)
+    class AA(val a:Int)
 
-val aa = AA(1)
-val bb = AA(2)
+    val aa = AA(1)
+    val bb = AA(2)
 
-val ga = AA::a
-val age = { aa:AA -> aa.a }
+    val ga = AA::a
+    val age = { aa:AA -> aa.a }
 
-val aFun = aa::a
-val bFun = AA::a
+    val aFun = aa::a
+    val bFun = AA::a
 
-fun runLambda() {
+    fun runLambda() {
 //    println(run(::ga))
 //    println(run(::age))
 //
@@ -48,34 +48,35 @@ fun runLambda() {
 
 //    listOf<Int>(1, 2, 3, 4, 5, 6).filter { it > 3 }.map { it.toString() }.forEach { it.p() }
 //    (1..1000).asSequence().filter { it > 950 }.map { it.toString() }.forEach { it.p() }
-    // remember Int.toString will provide '1', not one, unless you map them
-    println((1..1000).asSequence().filter { it > 950 }.map { it.toString() }.all { it.endsWith('1') })
-    println((1..1000).asSequence().filter { it > 950 }.map { it.toString() }.any { it.endsWith('1') })
-    println((1..1000).asSequence().filter { it > 950 }.map { it.toString() }.find { it.endsWith('1') })
+        // remember Int.toString will provide '1', not one, unless you map them
+        println((1..1000).asSequence().filter { it > 950 }.map { it.toString() }.all { it.endsWith('1') })
+        println((1..1000).asSequence().filter { it > 950 }.map { it.toString() }.any { it.endsWith('1') })
+        println((1..1000).asSequence().filter { it > 950 }.map { it.toString() }.find { it.endsWith('1') })
 
-    val listOfStringNums = (1..1000).asSequence().filter { it > 950 }.map {
-        it.toString().toCharArray()
-                .map { mapToWord(it) }
-                .joinToString("-")
-    }.toList()
+        val listOfStringNums = (1..1000).asSequence().filter { it > 950 }.map {
+            it.toString().toCharArray()
+                    .map { mapToWord(it) }
+                    .joinToString("-")
+        }.toList()
 
-    listOfStringNums.take(10).groupBy { it.substringAfter("nine-").substringBefore("-") }.forEach { println(it) }
+        listOfStringNums.take(10).groupBy { it.substringAfter("nine-").substringBefore("-") }.forEach { println(it) }
 
-    println("count of ends with e: " + listOfStringNums.count { it.endsWith('e') })
+        println("count of ends with e: " + listOfStringNums.count { it.endsWith('e') })
+
+    }
+
+    fun mapToWord(i:Char):String = when (i) {
+        '0' -> "zero"
+        '1' -> "one"
+        '2' -> "two"
+        '3' -> "three"
+        '4' -> "four"
+        '5' -> "five"
+        '6' -> "six"
+        '7' -> "seven"
+        '8' -> "eight"
+        '9' -> "nine"
+        else -> " "
+    }
 
 }
-
-fun mapToWord(i:Char):String = when (i) {
-    '0' -> "zero"
-    '1' -> "one"
-    '2' -> "two"
-    '3' -> "three"
-    '4' -> "four"
-    '5' -> "five"
-    '6' -> "six"
-    '7' -> "seven"
-    '8' -> "eight"
-    '9' -> "nine"
-    else -> " "
-}
-
