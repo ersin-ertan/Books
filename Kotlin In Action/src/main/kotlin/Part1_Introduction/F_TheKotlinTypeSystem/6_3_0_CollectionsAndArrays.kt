@@ -47,7 +47,7 @@ fun workingWithNullValues() {
 // key methods in Collection: size, iterator, contains
 // vs MutableCollection: add, remove, clear
 
-// if you have a collection that is part of the internal state of your componnent, you may need to make a copy of the collection
+// if you have a collection that is part of the internal state of your component, you may need to make a copy of the collection
 // before passing it to a function(defensive copy)
 
 fun <T> copyElements(source:Collection<T>, target:MutableCollection<T>) {
@@ -67,8 +67,8 @@ fun copy() {
     // read only collections aren't always thread safe
 }
 
-// kotlin  collections and java - every java collection interfacce has two representations in kotlin, readonly and mutable
-// mutable and normal versions of : iterable, colletion, list, set
+// kotlin  collections and java - every java collection interface has two representations in kotlin, readonly and mutable
+// mutable and normal versions of : iterable, collection, list, set
 
 // if you a passing a collection from kotlin to java, you must use the correcct type for the parameter depending on
 // whether the java code will mutate the collection, along with non null elements
