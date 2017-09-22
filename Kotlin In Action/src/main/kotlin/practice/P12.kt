@@ -112,3 +112,76 @@ private sealed class Sealed {
         }
     }
 }
+
+private interface AudioControls {
+
+    val volume:Float
+
+    var other:Int
+
+    fun play() {}
+    fun stop() {}
+    fun pause() {}
+}
+
+private sealed class AudibleFrequency:AudioControls {
+
+    val playCounter = PlayCounter()
+
+    val freqVolume = 0.75F
+
+    class Bass(override var other:Int):AudibleFrequency() {
+        override val volume:Float
+            get() = freqVolume
+    }
+
+    class Mid:AudibleFrequency() {
+        override var other:Int
+            get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+            set(value) {}
+        override val volume:Float
+            get() = freqVolume
+    }
+
+    abstract class High:AudibleFrequency() {
+        override val volume:Float
+            get() = freqVolume
+    }
+
+//    private infix fun test(frequency:AudibleFrequency, vol:Float = 1F){} // not aloud
+
+    private infix fun playFrequency(frequency:AudibleFrequency) {
+        frequency.play()
+        when (frequency) {
+            is Bass -> {
+            }
+            is Mid -> {
+            }
+            is High -> {
+            }
+        }
+    }
+
+    override fun play() {
+        playCounter.play()
+    }
+
+    inner class PlayCounter {
+
+        private var plays = 0L
+
+        val bass = Bass(1)
+        val mid = Mid()
+        val High = object:High() {
+            override var other:Int
+                get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+                set(value) {}
+        }
+
+        fun play() {
+            this@AudibleFrequency playFrequency bass // volume is preset to 0.75, to provide the second arg
+            // you can't use infix notation
+            plays++
+        }
+    }
+}
