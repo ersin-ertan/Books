@@ -12,13 +12,18 @@ package Part1_Introduction.D_ClassesObjectsAndInterfaces
 
 // singletons - combine class declaration and declaration of single instance
 data class Person1(val name:String, val id:Int)
-object Payroll{ // can inherit from classes and interfaces
+
+object Payroll { // can inherit from classes and interfaces
     val allEmployees = arrayListOf<Person1>()
-    fun calcSalary() {for(person in allEmployees){}}
+    fun calcSalary() {
+        for (person in allEmployees) {
+        }
+    }
 }
+
 // only thing not allowed are constructors(both primary and secondary), because it is
 // created at point of definition
-fun s(){
+fun s() {
     Payroll.allEmployees
     Payroll.calcSalary()
 }
@@ -39,21 +44,21 @@ fun s(){
 // called without a class instance but with access to internals of a class
 // use an companion object nested in the class, which can call class private functions
 
-class Outer{
+class Outer {
     companion object {
-        fun s(){}
+        fun s() {}
     }
 }
 
-fun main(args: Array<String>) {
+fun main(args:Array<String>) {
     Outer.s()
     println(Animal.africanAnimal("Cheeta"))
     println(Animal.idAnimal(342))
 }
 
-class Animal(val name:String){
-    companion object{
-        fun getName(id:Int)= "name" // can also return subclasses
+class Animal(val name:String) {
+    companion object {
+        fun getName(id:Int) = "name" // can also return subclasses
         fun africanAnimal(name:String) = Animal("AFR_$name")
         fun idAnimal(id:Int) = Animal("ID_${getName(id)}")
     }

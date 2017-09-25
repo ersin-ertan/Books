@@ -4,10 +4,10 @@ package Part1_Introduction.C_DefiningAndCallingFunctions
 // java split() doesn't work with . which is because the split takes the regular expression
 // as the param, thus . is any character, in kotlin we can use toRegex for string to reg
 // kotlin taxes arbitrary num of delimiters as plain text strings
-fun a() =println("12.423-3.A".split(".", "-"))
+fun a() = println("12.423-3.A".split(".", "-"))
 // [12, 423, 3, A] // or use character arguments '.' and ','
 
-fun parsePath(p:String){
+fun parsePath(p:String) {
     val dir = p.substringBeforeLast("/")
     val fullName = p.substringAfterLast("/")
     val fileName = fullName.substringBeforeLast(".")
@@ -20,10 +20,10 @@ fun parsePath(p:String){
 }
 
 // kotlin methods can help by reducing the need for regex, else use them
-fun ParsePathRegex(p:String){
+fun ParsePathRegex(p:String) {
     val regex = """(.+)/(.+)\.(.+)""".toRegex() // triple quoted string no need to escape chars including backslash
     val matchResult = regex.matchEntire(p)
-    if(matchResult != null){
+    if (matchResult != null) {
         val (dir, fileName, extension) = matchResult.destructured
         println("dir:$dir, name:$fileName, ext:$extension")
     }
@@ -35,7 +35,8 @@ fun ParsePathRegex(p:String){
 val kotlinLogo = """| //
                    .|//
                    .|/ \"""
-fun kl(){
+
+fun kl() {
 // produces the top line to the left, and the other two lines right aligned
     println(kotlinLogo)
 

@@ -65,5 +65,5 @@ val aa:String = alphaApply().toString()
 
 // with and apply are generic examples of using lambdas with receivers.
 
-fun alphaRefact() = buildString { ('A'..'Z').forEach { append(it) } ; append("done") }
+fun alphaRefact() = buildString { ('A'..'Z').forEach { append(it) }; append("done") }
 // buildString is in the standard library, creating a string builder and calling toString for you

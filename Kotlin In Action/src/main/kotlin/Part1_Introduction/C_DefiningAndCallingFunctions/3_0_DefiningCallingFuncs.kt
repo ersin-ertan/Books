@@ -2,9 +2,9 @@ package Part1_Introduction.C_DefiningAndCallingFunctions
 
 // defining and calling functions
 
-class A{
-    val set = setOf(1,3,5) // java.util.HashSet
-    val list = listOf(1,3,5) // java.util.ArrayList
+class A {
+    val set = setOf(1, 3, 5) // java.util.HashSet
+    val list = listOf(1, 3, 5) // java.util.ArrayList
     val map = mapOf(1 to "one", 7 to "seven") // java.util.HashMap
     // to is a normal function
 
@@ -14,33 +14,33 @@ class A{
     var first = set.first()
     var max = set.max()
 
-    fun print()=println(list) // [1,3,5] java invokes toString()
+    fun print() = println(list) // [1,3,5] java invokes toString()
     // but we need (1;3;5), thus
-    fun <T> joinToString(col:Collection<T>, separator:String, prefix:String, postfix:String):String{
+    fun <T> joinToString(col:Collection<T>, separator:String, prefix:String, postfix:String):String {
 
         val result = StringBuilder(prefix)
 
         for ((index, element) in col.withIndex()) {
-            if(index > 0) result.append(separator)
+            if (index > 0) result.append(separator)
             result.append(element)
         }
         result.append(postfix)
         return result.toString()
     } // how can you change the declaration to make the function call less verbose
 
-    fun customPrint()=joinToString(list, ";", "(", ")" )
+    fun customPrint() = joinToString(list, ";", "(", ")")
 
     // named arguments
-    fun named()=joinToString(list, separator = ";", prefix = "(", postfix = ")" )
+    fun named() = joinToString(list, separator = ";", prefix = "(", postfix = ")")
 
     // default prameter values - overabundance of overloaded methods
 
-    fun <T> joinToString1(col:Collection<T>, separator:String = ", ", prefix:String = "", postfix:String = ""):String{
+    fun <T> joinToString1(col:Collection<T>, separator:String = ", ", prefix:String = "", postfix:String = ""):String {
         return joinToString(col, separator, prefix, postfix)
     }
 
     // now on call you can omit some
-    fun call(){
+    fun call() {
         joinToString1(list, "--") // limited to omitting the trailing args
         // thus named arguments
         joinToString1(list, postfix = "!") // and the default values are used

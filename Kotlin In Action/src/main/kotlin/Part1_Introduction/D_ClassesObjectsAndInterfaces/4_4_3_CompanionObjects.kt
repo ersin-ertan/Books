@@ -1,34 +1,36 @@
 package Part1_Introduction.D_ClassesObjectsAndInterfaces
 
-interface JsonFactory<T>{
+interface JsonFactory<T> {
     fun fromJson(jsonText:String):T
 }
+
 // companion object implementing an interface
-class Obj(val name:String){
+class Obj(val name:String) {
 
     companion object Loader:JsonFactory<Obj> {
-        override fun fromJson(jsonText: String):Obj = Obj("test")
+        override fun fromJson(jsonText:String):Obj = Obj("test")
     }
 }
 
-class CO{
+class CO {
     // name not needed
     companion object:JsonFactory<CO> {
-        override fun fromJson(jsonText: String):CO { return CO()
+        override fun fromJson(jsonText:String):CO {
+            return CO()
         }
     }
 }
 
 // a function that uses an abstract factory to load obj can be passed an Obj
 
-fun main(args: Array<String>) {
+fun main(args:Array<String>) {
     loadFromJson(Obj)
 // or without the named companion obj, which is referenced via Person.Companion.func()
     // in java
     loadFromJson(CO)
 }
 
-fun <T>loadFromJson(loader:JsonFactory<T>):T{
+fun <T> loadFromJson(loader:JsonFactory<T>):T {
     return loader.fromJson("testing")
 }
 

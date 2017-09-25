@@ -3,23 +3,23 @@ package Part1_Introduction.D_ClassesObjectsAndInterfaces
 // compiler generated methods: data classes and class delegation
 
 // universal object methods
-open class Client(var name:String, val code:Int){
-    override fun toString()= "${this.javaClass.simpleName}(name=$name, code=$code)"
-    override fun equals(other:Any?):Boolean{
-        if(other==null || other !is Client) return false // is equals instanceof
+open class Client(var name:String, val code:Int) {
+    override fun toString() = "${this.javaClass.simpleName}(name=$name, code=$code)"
+    override fun equals(other:Any?):Boolean {
+        if (other == null || other !is Client) return false // is equals instanceof
         return name == other.name && code == other.code
     }
 }
 
-fun main(args: Array<String>) {
+fun main(args:Array<String>) {
     val c = Client("Tom", 1)
     val cc = Client("Tom", 1)
     val ccc = c
     c.name = "Bob"
     println(c.toString())
     println(ccc.toString())
-    println(c==cc) // false
-    println(c==ccc) // true
+    println(c == cc) // false
+    println(c == ccc) // true
 
     val setOfHash = hashSetOf(Client("Bob", 1))
     println(setOfHash.contains(Client("Bob", 1))) // not equal; false
@@ -28,9 +28,9 @@ fun main(args: Array<String>) {
     println(setOfHash1.contains(Client1("Bob", 1))) // equal; true
 
     val c1 = Client1("Tom", 1)
-    println("copy original ${c1}" )
+    println("copy original ${c1}")
     println(c1.copy(code = 2).toString())
- }
+}
 
 // java uses == to compare primitive and reference types
 // kotlin == is default to compare two objects, comparing their values by
@@ -40,8 +40,8 @@ fun main(args: Array<String>) {
 // at first their hash codes are compared, and then, only if they’re equal, the
 // actual values are compared
 
-class Client1(name: String, code: Int) : Client(name, code){
-    override fun hashCode(): Int = name.hashCode() * 31 + code
+class Client1(name:String, code:Int):Client(name, code) {
+    override fun hashCode():Int = name.hashCode() * 31 + code
     fun copy(name:String = this.name, code:Int = this.code) = Client(name, code)
 }
 
@@ -68,22 +68,22 @@ data class Client2(val name:String, val code:Int)
 // object using by
 
 class DelegatingCollection<T>(innerList:Collection<T> = ArrayList<T>())
-    :Collection<T> by innerList{
+    :Collection<T> by innerList {
 // compiler will generate implementation
 }
 
-class CountingSet<T>(val innerSet:MutableCollection<T> = HashSet<T>()):MutableCollection<T> by innerSet{
-    var objectsAdded=0
-    override fun add(element:T):Boolean{
-        if(innerSet.add(element)) {
+class CountingSet<T>(val innerSet:MutableCollection<T> = HashSet<T>()):MutableCollection<T> by innerSet {
+    var objectsAdded = 0
+    override fun add(element:T):Boolean {
+        if (innerSet.add(element)) {
             ++objectsAdded
             return true
         }
         return false
     }
 
-    override fun addAll(elements: Collection<T>): Boolean {
-        if(innerSet.addAll(elements)) {
+    override fun addAll(elements:Collection<T>):Boolean {
+        if (innerSet.addAll(elements)) {
             objectsAdded += elements.size
             return true
         }

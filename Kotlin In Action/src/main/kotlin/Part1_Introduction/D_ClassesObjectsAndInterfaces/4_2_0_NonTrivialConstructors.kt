@@ -31,10 +31,12 @@ val u = User("bob")
 // if your class has a superclass the primary constructor also needs to initialize
 // the superclass, provide the superclass constructor parameters after the superclass ref
 // in the base class list
-open class SuperA(val nickname: String)
-class ChildA(nickname: String):SuperA(nickname)
+open class SuperA(val nickname:String)
+
+class ChildA(nickname:String):SuperA(nickname)
 // else if you don't a default no op constructor will be generated
 open class MyClass
+
 open class SuperNoParam
 open class ChildB:SuperNoParam() // this constructor is explicitly required
 interface MyInterf // but not with interfaces

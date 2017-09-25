@@ -1,6 +1,5 @@
 package Part1_Introduction.D_ClassesObjectsAndInterfaces
 
-import java.awt.SystemColor.window
 import java.awt.Window
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
@@ -8,18 +7,18 @@ import java.awt.event.MouseEvent
 // object expressions - anonymous inner classes rephrased
 // object can be used to declare anonymous objects too, replacing javas anon inner class
 
-fun ss(){
+fun ss() {
     Window(null).addMouseListener(
-            object:MouseAdapter(){ // anonymous object extending MouseAdapter
-                override fun mouseClicked(e: MouseEvent?) {
+            object:MouseAdapter() { // anonymous object extending MouseAdapter
+                override fun mouseClicked(e:MouseEvent?) {
                     // do whatever, override MouseAdapter method
-                    }
+                }
             }
     )
 
     // else if a named assignment is needed, use a variable
-    val listener = object:MouseAdapter(){
-        override fun mouseClicked(e: MouseEvent?) {}
+    val listener = object:MouseAdapter() {
+        override fun mouseClicked(e:MouseEvent?) {}
     }
 }
 
@@ -28,10 +27,10 @@ fun ss(){
 // each object expression execution
 // can modify value of variables from within an object expression
 
-fun countClicks(window:Window){
+fun countClicks(window:Window) {
     var clickCount = 0 // declare local variables
-    window.addMouseListener(object:MouseAdapter(){
-        override fun mouseClicked(e: MouseEvent?) {
+    window.addMouseListener(object:MouseAdapter() {
+        override fun mouseClicked(e:MouseEvent?) {
             ++clickCount // update the variable's value
         }
     })

@@ -7,24 +7,24 @@ package Part1_Introduction.C_DefiningAndCallingFunctions
 
 class User(val id:Int, val name:String, val address:String)
 
-fun saveUser(user:User){
-    if(user.name.isEmpty()) throw IllegalArgumentException("${user.id} name is empty")
+fun saveUser(user:User) {
+    if (user.name.isEmpty()) throw IllegalArgumentException("${user.id} name is empty")
     // field validation is duplicated
-    if(user.address.isEmpty())throw IllegalArgumentException("${user.id} addr is empty")
+    if (user.address.isEmpty()) throw IllegalArgumentException("${user.id} addr is empty")
     // save to db
 }
 
-fun doS(){
+fun doS() {
     saveUser(User(1, "", ""))
 }
 
 // lets move the validation code to a local function
 
 // declares a local function to validate any field
-fun saveUser1(user:User){
+fun saveUser1(user:User) {
 
-    fun validate(user:User, value:String, fieldName:String){
-        if(value.isEmpty()) throw IllegalArgumentException("${user.id} $fieldName is empty")
+    fun validate(user:User, value:String, fieldName:String) {
+        if (value.isEmpty()) throw IllegalArgumentException("${user.id} $fieldName is empty")
     }
 
     // calls the local function to validate the specific fields
@@ -34,10 +34,10 @@ fun saveUser1(user:User){
 
 // no need to pass teh user function, local funcs have access to all params of enclosing func
 
-fun saveUser2(user:User){
+fun saveUser2(user:User) {
 
-    fun validate(value:String, fieldName:String){
-        if(value.isEmpty()) throw IllegalArgumentException("${user.id} $fieldName is empty")
+    fun validate(value:String, fieldName:String) {
+        if (value.isEmpty()) throw IllegalArgumentException("${user.id} $fieldName is empty")
     }
 
     // calls the local function to validate the specific fields
@@ -49,10 +49,10 @@ fun saveUser2(user:User){
 
 class User1(val id:Int, val name:String, val addres:String)
 
-fun User1.validateBeforeSave(){
-    fun validate(value:String, fieldName:String){
+fun User1.validateBeforeSave() {
+    fun validate(value:String, fieldName:String) {
 // access properties of the user directly
-        if(value.isEmpty()) throw IllegalArgumentException("User${id}'s $fieldName is empty")
+        if (value.isEmpty()) throw IllegalArgumentException("User${id}'s $fieldName is empty")
     }
 }
 

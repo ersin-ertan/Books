@@ -1,7 +1,7 @@
 package Part1_Introduction.B_KotlinBasics
 
 
-fun max(a:Int, b:Int):Int{
+fun max(a:Int, b:Int):Int {
     return if (a > b) a else b
 }
 // similar to ternary
@@ -9,10 +9,10 @@ fun max(a:Int, b:Int):Int{
 // statements are top level control structures
 
 // functions can be writen from expression bodies to block bodies, wow
-fun max1(a:Int, b:Int):Int = if(a > b) a else b
+fun max1(a:Int, b:Int):Int = if (a > b) a else b
 
 // omit the return type, type inference will evaluate the return type
-fun max2(a:Int, b:Int) = if(a > b) a else b
+fun max2(a:Int, b:Int) = if (a > b) a else b
 
 // variables
 val question = "what time is it?"
@@ -22,7 +22,7 @@ val floatingPoint = 4.5e3 // 4.5*10^3 = 4500 will be typed as a double
 // if no initializer, type must be explicit if inside function local scope
 // but cant do this in class scope
 //val answer3:Int // property must be initialized
-fun initializer(){
+fun initializer() {
     val answer2:Int
     answer2 = 4
 }
@@ -30,26 +30,28 @@ fun initializer(){
 val immutableReference = "declaration corresponds with javas final"
 var mutableRefernce = "declaration corresponds with nonfinal"
 
-fun vals(){
+fun vals() {
     val m:String // only one initialization
-    if(true) m = "true" else m = "false"
+    if (true) m = "true" else m = "false"
     // m = "hello" // val cannot be reassigned
 }
 
-fun mutateObjectPointingtoImmutable(){
+fun mutateObjectPointingtoImmutable() {
     val myArrayList = arrayListOf("test")
     myArrayList.add("new")
 }
 
-fun variablesAreTypeFixed(){
+fun variablesAreTypeFixed() {
     var t = "string"
     // t = 34 // the integer literal does not conform to the expected type string
 }
 
-fun stringTemplates(){
+fun stringTemplates() {
     val name = if (true) "bob" else "bobby"
     println("hey $name you can escape with \$name")
-    class S{val name = "myName"} // interesting, need for new instance
+    class S {
+        val name = "myName"
+    } // interesting, need for new instance
     println("hey ${S().name}")
 
     println("logic within string template ${if (true) S().name else "text"}")

@@ -87,6 +87,7 @@ fun creatingSequences() {
 
 // in a sequence, each element has parents of its own type.
 fun File.isInsideHiddenDirectory() = generateSequence(this) { it.parentFile }.any { it.isHidden }
+
 // replating any with find, youll get the desired directory? using sequences allows you to stop traversing the parents as
 // soon as you find the required directory
 fun isHidden() {

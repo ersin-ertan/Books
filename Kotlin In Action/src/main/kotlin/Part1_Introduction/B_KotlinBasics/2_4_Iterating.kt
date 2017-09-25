@@ -2,9 +2,11 @@ package Part1_Introduction.B_KotlinBasics
 
 import java.util.*
 
-fun whileLoop(){
-    while(true){}
-    do{}while (true)
+fun whileLoop() {
+    while (true) {
+    }
+    do {
+    } while (true)
 }
 
 // ranges and progressions
@@ -12,20 +14,20 @@ val oneToTen = 1..10 // closed/inclusive both numbers are part of the range
 // will print 1..10
 
 // iteration is called a progression
-fun progresssion(){
-    for(i in 1..10) println(i)
+fun progresssion() {
+    for (i in 1..10) println(i)
 }
 
-fun p2(){
+fun p2() {
     for (i in 100 downTo 1 step 3) println(i)
 }
 
-fun p3(){
+fun p3() {
     val size = 3
-    for(i in 0 until size)println(i)
+    for (i in 0 until size) println(i)
 }
 
-fun maps(){
+fun maps() {
     val binaryReps = TreeMap<Char, String>()
 
     // for works with character ranges too
@@ -40,8 +42,8 @@ fun maps(){
 // you don't need a separate variable to store the index and increment by hand
 val list = arrayListOf("10", "11", "123")
 
-fun indexing(){
-    for((index, element) in list.withIndex()) println("$index:$element")
+fun indexing() {
+    for ((index, element) in list.withIndex()) println("$index:$element")
 }
 
 fun isLetterIn(c:Char) = c in 'a'..'z' || c in 'A'..'Z'

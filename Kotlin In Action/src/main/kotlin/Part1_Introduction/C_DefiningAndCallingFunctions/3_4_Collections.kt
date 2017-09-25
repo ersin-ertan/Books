@@ -13,15 +13,15 @@ package Part1_Introduction.C_DefiningAndCallingFunctions
 // code completion shows both extended and regular methods
 
 // varags
-val myList = listOf(2,6,7,8,9)
+val myList = listOf(2, 6, 7, 8, 9)
 // function is declared via
 //fun listOf<T>(vararg values:T):List<T>{...make list}
 
 // kotlin uses the vararg modifier on the param
 
 // java may pass in the array, kotlin requires you to explicitly unpack it, called spread operator
-fun unpacking(){
-    val myArray = arrayOf(1,7,8,9,0)
+fun unpacking() {
+    val myArray = arrayOf(1, 7, 8, 9, 0)
     val list = listOf("args", *myArray, "test") // put the star in front of it
     println(list) // now you can combine values of array and fixed
 }
@@ -33,7 +33,7 @@ val map = mapOf(1 to "one", 4 to "four")
 
 // to   Creates a tuple of type [Pair] from this and [that], creating [Map] literals with less noise
 
-fun eq(){
+fun eq() {
     1.to("one") // regular function call
     1 to "one" // infix notation
     // can be used with regular methods and extension functions that have one req param
@@ -50,7 +50,7 @@ fun eq(){
     // create a pair using the to function and unpack it with a destructuring declaration
     // which is not limited to pairs, consider
     val collection:List<String> = listOf("a", "b")
-    for((index, element) in collection.withIndex()){ // adds the index value, to be like a map
+    for ((index, element) in collection.withIndex()) { // adds the index value, to be like a map
         println(("$index:$element"))
     }
 

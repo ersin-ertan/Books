@@ -13,8 +13,8 @@ package Part1_Introduction.D_ClassesObjectsAndInterfaces
 // sealed modifier restricts subclasses of a class
 
 // interfaces in kotiln, methods with default implementation
-interface Clickable{
-// single abstract method click
+interface Clickable {
+    // single abstract method click
     fun click()
 
     fun doubleClick() = println("double clicked")
@@ -30,8 +30,8 @@ class Button:Clickable { // : replaces extends and implements keyword
     }
 }
 
-interface Focusable{
-    fun setFocus(b:Boolean) = println("Is ${if(!b) "not" else ""} focused")
+interface Focusable {
+    fun setFocus(b:Boolean) = println("Is ${if (!b) "not" else ""} focused")
     fun doubleClick() = println("double clicked a focus")
     fun doubleClick1() = println("double clicked a focus")
 }
@@ -46,10 +46,11 @@ class B2:Clickable, Focusable {
 
     // may be interesting to have an operator work with the two results
     override fun doubleClick1() {
-        if(super<Focusable>.doubleClick().equals(super<Clickable>.doubleClick()))
-        {} // get position of the focusable image, some how use the clickable object
-            // position for something...
-            else {}
+        if (super<Focusable>.doubleClick().equals(super<Clickable>.doubleClick())) {
+        } // get position of the focusable image, some how use the clickable object
+        // position for something...
+        else {
+        }
 
     }
 
@@ -60,5 +61,5 @@ class B2:Clickable, Focusable {
 //        super<cl>.doubleClick()
 //    }
 
-    override fun click() { }
+    override fun click() {}
 }

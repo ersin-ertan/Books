@@ -17,25 +17,25 @@ fun String.lastChar1():Char = get(length - 1)
 // import filename.functionname as fn
 // "hi".fn()
 
-fun test(){
+fun test() {
     val c = "kotlin".lastChar()
     val cc = "kotlin".lastChar1()
     // call from java with char c = StringUtilKt.lastChar("java");
 }
 
-fun <T> Collection<T>.joinToString(sep:String = ", ", pre:String = "", post:String = ""):String{
+fun <T> Collection<T>.joinToString(sep:String = ", ", pre:String = "", post:String = ""):String {
     val result = StringBuilder(pre)
 
-    for((index, element) in this.withIndex()){
-        if(index>0) result.append(sep)
+    for ((index, element) in this.withIndex()) {
+        if (index > 0) result.append(sep)
         result.append(element)
     }
     result.append(post)
     return result.toString()
 }
 
-val list = arrayListOf(2,5,6)
-fun pr(){
+val list = arrayListOf(2, 5, 6)
+fun pr() {
     println(list.joinToString("--")) // extended from collections
 }
 
@@ -54,8 +54,9 @@ fun pr(){
 // from the parent class that a client programmer might have implemented(if same name)
 
 // Extension properties
-val String.lastChar:Char get() = get(length-1) // no state, getter must always be defined
+val String.lastChar:Char get() = get(length - 1) // no state, getter must always be defined
+
 // because there is no backing field, nowhere to store the value, same for initializers
-fun t(){
+fun t() {
     println("test".lastChar)
 }

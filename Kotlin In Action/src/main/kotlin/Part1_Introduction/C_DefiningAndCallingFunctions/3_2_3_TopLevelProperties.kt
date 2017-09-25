@@ -16,7 +16,6 @@ const val PUBLIC_STATIC_FINAL_VAL = "hello"
 // public static final String PUBLIC_STATIC_FINAL_VAL = "hello";
 
 
-
 /*Such properties need to fulfil the following requirements:
 
 Top-level or member of an object

@@ -47,7 +47,8 @@ fun printPAge() {
 
 // vs
 val myAgeFunction = p::age
-fun printPAge1(){
+
+fun printPAge1() {
     println(myAgeFunction())
 }
 

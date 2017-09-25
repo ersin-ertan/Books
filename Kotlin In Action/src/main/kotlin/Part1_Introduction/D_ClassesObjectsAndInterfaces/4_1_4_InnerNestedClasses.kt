@@ -2,15 +2,15 @@ package Part1_Introduction.D_ClassesObjectsAndInterfaces
 
 import java.io.Serializable
 
-class A(){
+class A() {
     // good for helper class, or code localization
-    class B(){
+    class B() {
         // don't have access to outer class instance
 
     }
 }
 
-interface State: Serializable
+interface State:Serializable
 
 interface View {
     fun getCurrentState():State
@@ -19,7 +19,7 @@ interface View {
 
 class ButtonB:View {
 
-    override fun restoreState(state:State){}
+    override fun restoreState(state:State) {}
     override fun getCurrentState():State = ButtonState()
 
     class ButtonState:State {} // same as static nested class in java, where the
@@ -44,20 +44,21 @@ class Child0:Super0()
 class Child00:Super0() // adding this prone to logical errors
 
 sealed class Super() { // restricts ability to create external direct subclasses, like final private
-// sealed is open by default
+    // sealed is open by default
     class Child1:Super() // must be nested, or within the same file
+
     class Child2:Super()
 //    class Child3:Super() // adding this will be a compiler error with the when
 }
 
-fun sealedWhen(s:Super, s0:Super0){
-    val a = when(s){
+fun sealedWhen(s:Super, s0:Super0) {
+    val a = when (s) {
         is Super.Child1 -> 1
         is Super.Child2 -> 2
-        // no else required
+    // no else required
     }
 
-    val notSealed = when(s0){
+    val notSealed = when (s0) {
         is Child0 -> 1
         else -> 2 // else required
     }
