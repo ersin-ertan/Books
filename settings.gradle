@@ -3,4 +3,6 @@ include 'Language Implementation Patterns'
 findProject(':Language Implementation Patterns')?.name = 'languageImplementationPatterns'
 include 'Kotlin In Action'
 findProject(':Kotlin In Action')?.name = 'kotlinInAction'
+include 'Intro To Compiler Construction Java'
+findProject(':Intro To Compiler Construction Java')?.name = 'introToCompilerConstruction'
 

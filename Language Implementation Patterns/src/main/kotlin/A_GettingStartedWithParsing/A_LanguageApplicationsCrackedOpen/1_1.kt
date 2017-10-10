@@ -1,12 +1,12 @@
 package A_GettingStartedWithParsing.A_LanguageApplicationsCrackedOpen
 
-// Learn to recognize computer language(valid sentences), every language app has a parser(recognizer) lest it be code gen
+// Learn to recognize computer language(valid sentences), every language app has a parser(recognizer), excluding code gen
 
 // Multiple components in a multistage pipeline analyzing/manipulating an input stream.
 // Valid input sequence to internal data structure, or sentence of another language.
 // Reader recognizes input and builds an intermediate representation to feed the rest of the app.
 // Generator emits output based on the IR, and info from intermediate stages(semantic analyzer)
-// Kind of app dictates the pipline stages and hookup.
+// Kind of app dictates the pipeline stages and hookup.
 
 // Reader - builds data structure from one or more input streams, text or binary. Ex. config file readers, program analysis
 // tools, class file loaders
@@ -16,7 +16,7 @@ package A_GettingStartedWithParsing.A_LanguageApplicationsCrackedOpen
 
 // Translator/Rewriter - Reads text/binary input, emits output conforming to same or different language. A combined reader
 // generator. Ex. old programming lang translator to modern, wiki to HTML, refactorers, profilers instrumenting code, log
-// file report generaors, pretty printers, macro preprocessors. Assemblers/compilers get their own category.
+// file report generators, pretty printers, macro preprocessors. Assemblers/compilers get their own category.
 
 // Interpreter - read, decode, execute instructions. Ex. Calculator, POP protocol servers, programing language implementations
 
@@ -71,7 +71,7 @@ package A_GettingStartedWithParsing.A_LanguageApplicationsCrackedOpen
 
 
 // Translating one language to another
-// Compilers to machine code. Finally after translation, a generator emits structured text or binary. Output is a function
-// of the input/semantic analysis. Reader and generator can be combined to a single pass if simple, else decouple the order
-// to compute output phrases from emittion.Generators conform to a language, thus use a formal language tool to emit strucuterd
-// text. An "unparser" template engine.
+// Compilers to machine code. Finally after translation, a generator emits structured text or binary. Output is a
+// function of the input/semantic analysis. Reader and generator can be combined to a single pass if simple, else
+// decouple the order to compute output phrases from emition.Generators conform to a language, thus use a formal
+// language tool to emit structured text. An "unparser" template engine.

@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Intro To Compiler Construction Java" />
             <option value="$PROJECT_DIR$/Kotlin In Action" />
             <option value="$PROJECT_DIR$/Language Implementation Patterns" />
           </set>
