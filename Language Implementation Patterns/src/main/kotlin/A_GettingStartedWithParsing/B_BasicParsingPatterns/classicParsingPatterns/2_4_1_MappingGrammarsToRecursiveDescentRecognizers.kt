@@ -1,4 +1,4 @@
-package A_GettingStartedWithParsing.B_BasicParsingPatterns.classicParsinPatterns
+package A_GettingStartedWithParsing.B_BasicParsingPatterns.classicParsingPatterns
 
 /*
 Mapping Grammars to Recursive-Descent Recognizers: translates a grammar to a recursive descent recognizer that matches
