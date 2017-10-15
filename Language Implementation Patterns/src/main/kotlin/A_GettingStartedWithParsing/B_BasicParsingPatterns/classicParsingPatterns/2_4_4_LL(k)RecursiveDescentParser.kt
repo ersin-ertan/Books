@@ -1,5 +1,6 @@
 package A_GettingStartedWithParsing.B_BasicParsingPatterns.classicParsingPatterns
 
+
 /*
 Analyzes the syntactic structure of the token sequence of a phrase using k>1 lookahead tokens
 
@@ -55,3 +56,119 @@ infrastructure, then we'll implement LL(2) rule element.
 
 
 
+abstract class Parser1(val input:Lexer, val k:Int) {
+    // k is the lookahead size
+    var p = 0 // circular index of next token pos to fill
+    val lookahead = Array<Token>(k) { input.nextToken().also { p = (p + 1) % k } }
+
+    fun consume() {
+        lookahead[p] = input.nextToken()
+        p = (p + 1) % k
+    }
+
+    fun LT(i:Int):Token = lookahead[(p + i - 1) % k] // circular fetch
+    fun LA(i:Int):Int = LT(i).type
+    fun match(x:Int) = if (LA(1) == x) consume() else throw Error("Expecting: ${input.getTokenName(x)} Found: ${LT(1)}")
+
+}
+
+class LookaheadLexer(input:String):Lexer(input) {
+
+    override fun getTokenName(tokenType:Int):String = LookaheadLexer.tokenNames[tokenType]
+
+    override fun nextToken():Token {
+        while (curChar != Lexer.EOF) {
+            if (isWhiteSpace) advance()
+            return when (curChar) {
+                ',' -> {
+                    consume()
+                    Token(COMMA, ",")
+                }
+                '[' -> {
+                    consume()
+                    Token(LBRACK, "[")
+                }
+                ']' -> {
+                    consume()
+                    Token(RBRACK, "]")
+                }
+                '=' -> {
+                    consume()
+                    Token(EQUALS, "=")
+                }
+                else -> if (isLetter) name() else throw Error("invalid character: $curChar")
+
+            }
+        }
+        return Token(Lexer.EOF_TYPE, "<EOF>")
+    }
+
+    /** name : LETTER+ ; // name is sequence of >=1 letter  */
+    fun name():Token = Token(NAME, buildString {
+        do {
+            append(curChar)
+            LETTER()
+        } while (isLetter)
+    })
+
+    /** LETTER   : 'a'..'z'|'A'..'Z'; // define what a letter is (\w)  */
+    fun LETTER() = if (isLetter) consume() else throw Error("expecting LETTER; found $curChar")
+
+    companion object {
+        var NAME = 2
+        var COMMA = 3
+        var LBRACK = 4
+        var RBRACK = 5
+        var EQUALS = 6
+        val tokenNames
+            get() = arrayOf("n/a", "<EOF>", "NAME", ",", "[", "]", "=")
+    }
+
+    override val isWhiteSpace
+        get() = when (curChar) {
+            ' ', '\t', '\n', '\r' -> true
+            else -> false
+        }
+
+    val isLetter
+        get() = curChar in 'a'..'z' || curChar in 'A'..'Z'
+}
+
+class LookaheadParser(input:Lexer, k:Int):Parser1(input, k) {
+
+    /** list : '[' elements ']' ; // match bracketed list */
+    fun list() {
+        match(LookaheadLexer.LBRACK)
+        elements()
+        match(LookaheadLexer.RBRACK)
+    }
+
+    /** elements : element (',' element)* ; // match comma-separated list */
+    fun elements() {
+        element()
+        while (LA(1) == LookaheadLexer.COMMA) {
+            match(LookaheadLexer.COMMA)
+            element()
+        }
+    }
+
+    fun element() = when (LA(1)) {
+        LookaheadLexer.NAME -> {
+            if (LA(2) == LookaheadLexer.EQUALS) {
+                match(LookaheadLexer.NAME)
+                match(LookaheadLexer.EQUALS)
+            }
+            match(LookaheadLexer.NAME)
+        }
+        LookaheadLexer.LBRACK -> list()
+        else -> throw Error("Expecting name or list Found ${LT(1)}")
+    }
+}
+
+fun main(args:Array<String>) {
+    val arg = "[a,b=c,[d,e]]"   // completes silently
+    val argX = "[a,b=c,,[d,e]]" // Exception in thread "main" java.lang.Error: Expecting name or list - Found <',',COMMA>
+    val lexer = LookaheadLexer(arg)
+    val parser = LookaheadParser(lexer, 2)
+    parser.list()
+}

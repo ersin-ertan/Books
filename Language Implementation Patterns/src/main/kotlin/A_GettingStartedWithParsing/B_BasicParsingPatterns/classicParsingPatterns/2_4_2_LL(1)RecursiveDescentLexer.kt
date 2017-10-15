@@ -79,12 +79,20 @@ abstract class Lexer(val input:String) {
     }
 
     fun consume() {
+        advance()
+        if (isWhiteSpace) consume()
+    }
+
+    fun advance() {
         p++
         curChar = if (p >= input.length) EOF else input[p]
     }
 
+    fun match(x:Char) = if (curChar == x) consume() else throw Error("expecting: $x; Found: $curChar")
+
     abstract fun nextToken():Token
     abstract fun getTokenName(tokenType:Int):String
+    abstract val isWhiteSpace:Boolean
 
 }
 
@@ -96,34 +104,39 @@ class ListLexer(input:String):Lexer(input) {
         val COMMA = 3
         val LBRACK = 4
         val RBRACK = 5
-        val tokenNames = arrayOf<String>("n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK")
-        val whiteSpace = listOf<Char>(' ', '\t', '\n', '\r')
+        val tokenNames
+            get() = arrayOf<String>("n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK")
     }
 
-    fun isLetter() = curChar in 'a'..'z' || curChar in 'A'..'Z'
+
+    override val isWhiteSpace
+        get() = when (curChar) {
+            ' ', '\t', '\n', '\r' -> true
+            else -> false
+        }
+
+    val isLetter
+        get() = curChar in 'a'..'z' || curChar in 'A'..'Z'
 
     override fun getTokenName(tokenType:Int):String = tokenNames[tokenType]
 
     override fun nextToken():Token {
-        nextT@ while (curChar != EOF) {
-            when (curChar) {
-                in whiteSpace -> {
-                    WS()
-                    continue@nextT
-                }
+        while (curChar != EOF) {
+            if (isWhiteSpace) consume()
+            return when (curChar) {
                 ',' -> {
                     consume()
-                    return Token(COMMA, ",")
+                    Token(COMMA, ",")
                 }
                 '[' -> {
                     consume()
-                    return Token(LBRACK, "[")
+                    Token(LBRACK, "[")
                 }
                 ']' -> {
                     consume()
-                    return Token(RBRACK, "]")
+                    Token(RBRACK, "]")
                 }
-                else -> return if (isLetter()) NAME() else throw Error("invalid character: $curChar")
+                else -> if (isLetter) NAME() else throw Error("invalid character: $curChar")
             }
         }
         return Token(EOF_TYPE, "<EOF>")
@@ -134,13 +147,10 @@ class ListLexer(input:String):Lexer(input) {
             do {
                 append(curChar)
                 consume()
-            } while (isLetter())
+            } while (isLetter)
         })
     }
 
-    fun WS() {
-        while (curChar in whiteSpace) consume()
-    }
 }
 
 fun main(args:Array<String>) {
