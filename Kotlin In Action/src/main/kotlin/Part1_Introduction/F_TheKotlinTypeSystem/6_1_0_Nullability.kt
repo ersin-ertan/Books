@@ -84,7 +84,7 @@ fun String?.isNullOrBlank():Boolean = this == null// explicit check, this can be
         || this.isBlank() // this is auto smart cast
 
 // but careful with let
-val h = f.let { theFIsNull -> println() } // not a safe call, thus 'it' or theFIsNull is null
+val h = f.let { theCanBeNull -> println() } // not a safe call, thus 'it' or theFIsNull is null
 val i = f?.let { theFIsNotNull -> println("else i wont run") }
 // extension functions can be non-null, but change to null iff it turns out it's used mostly on nullable values thus you
 // deal with null explicitly
@@ -94,6 +94,13 @@ val i = f?.let { theFIsNotNull -> println("else i wont run") }
 fun <T> ea(t:T) = println(t.toString()) // t may be null, use ? safe call
 val j = ea(Int) // kotlin.jvm.internal.IntCompanionObject@7adf9f5f
 val k = ea(null)
+
+inline fun <reified T, BB> eb(a:Any, b:BB){
+    when(a){
+        is T -> println("T was not required to be passed in")
+//        is BB -> Cannot check for an instance of erased type: BB
+    }
+}
 
 // to make it non null, specify n upper bound, which will reject the null type value
 fun <T:Any> ea(t:T, a:Int) {}

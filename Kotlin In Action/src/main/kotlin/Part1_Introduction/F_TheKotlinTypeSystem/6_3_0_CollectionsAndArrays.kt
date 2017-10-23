@@ -6,32 +6,32 @@ import java.io.BufferedReader
 
 // Nullability and collections - collections type param can be nullable, as for the collection itself
 
-private fun <T:Number> add(c:Collection<T?>) {
-    val l:MutableList<T> = mutableListOf()
+private fun <T : Number> add(c: Collection<T?>) {
+    val l: MutableList<T> = mutableListOf()
     c.forEach { if (it != null) l.add(it) }
 }
 
-fun readNums(reader:BufferedReader):List<Int?> {
+fun readNums(reader: BufferedReader): List<Int?> {
     val result = ArrayList<Int?>()
 
     for (line in reader.lineSequence())
         try {
             val number = line.toInt()
             result.add(number)
-        } catch (e:NumberFormatException) {
+        } catch (e: NumberFormatException) {
             result.add(null)// its ok to add nulls
         }
 
     return result
 }
 
-fun readNums1(reader:BufferedReader):List<Int?> {
+fun readNums1(reader: BufferedReader): List<Int?> {
     val result = ArrayList<Int?>()
     for (line in reader.lineSequence()) result.add(line.toIntOrNull()) // power method
     return result
 }
 
-fun wholeListNull(reader:BufferedReader):List<Int?>? {
+fun wholeListNull(reader: BufferedReader): List<Int?>? {
     return null // the whole list can be null, and both the elements in the list can be null
 } // you need a null check for both the list, and the contents of the list
 
@@ -50,7 +50,7 @@ fun workingWithNullValues() {
 // if you have a collection that is part of the internal state of your component, you may need to make a copy of the collection
 // before passing it to a function(defensive copy)
 
-fun <T> copyElements(source:Collection<T>, target:MutableCollection<T>) {
+fun <T> copyElements(source: Collection<T>, target: MutableCollection<T>) {
     for (item in source) {
         target.add(item)
     }
@@ -84,7 +84,28 @@ fun copy() {
 
 // Arrays of objects and primitive types -
 
-fun main(args:Array<String>) {
+fun arr(a: Array<String>) {
+    for (i in a.indices) {
+        println("arg $i is: ${a[i]}")
+    }
+}
+
+// to create an array in kotlin, arrayOf() or arrayOfNulls(), or array constructor with lambda init each element
+
+// if you have a kotlin method with a vararg param, and data is already stored in a collection convert it to typed array
+
+fun joinStrings(vararg string: String) {}
+
+val strings = listOf("a", "b")
+val joinSt = joinStrings(*strings.toTypedArray()) // spread operator to pass array as variable argument
+// if used on primitve values like Int, it will become the boxed value of Integer
+
+// you can also pre populate via
+val fiveZeros = IntArray(5)
+val threeZeros = intArrayOf(0, 0, 0)
+
+
+fun main(args: Array<String>) {
     for (i in args.indices) { // use array.indices extension property to iterate over thhe range of indices
         println("arg $i is ${args[i]}")
     }
