@@ -1,66 +1,54 @@
 package Part1_Introduction.G_OperatorOverloading
 
-// using symbolic operators like +, -, * which are called conventions
+// Delegated properties: basics
 
-// Overloading arithmetic operators
-
-data class Point(val x: Int, val y: Int) {
-
-    operator fun plus(other: Point): Point = Point(x + other.x, y + other.y)
-
+class Foo {
+//    var p: Type by Delegate()
 }
 
-fun plus() {
-    val newPoint = Point(1, 1) + Point(2, 3)
+// new instance of the delegate via by, compiler creates hidden helper property initialized with instance of delegate
+// object, to which p delegates(generated get and set)
+
+// example delegate class
+
+class Delegate {
+//    operator fun getValue(){}
+//    operator fun setValue(){}
 }
 
-// overloadable binary arithmetic operators are: times *, div /, mod %, plus +, minus -
-// and have the same precedence as the standard numeric types, with *,/,% at the top
-
-fun Point.times(scale: Double): Point = Point((x * scale).toInt(), (y * scale).toInt())
-
-// but remember that Point.times(2.0 is not the same as 2.0 times Point, you must define both if required
-
-// No special operators for bitwise operations, they are used like regular functions, supporting infix call syntax
-// shl signed shift left, shr signed shift right, ushr unsigned shift right, and bitwise, or bitwise, xor bitwise, inv bitwise inversion
-
-
-// Compound assignment operators
-
-fun p() {
-    var p = Point(1, 1)
-    p += Point(1, 1)
+class Fooo {
+    // var p: type by Delegate()
 }
 
-// sometimes you don't want to reassign the reference, just modify it
-// method must be defined with the Unit return type
+// using delegated properties lazy initialization and by lazy()
+// lazy init is on demand object creation on first access, less resources if the object isn't always used
 
-//operator fun <T> MutableCollection<T>.plusAssign(element: T) = Unit.also { this.add(element) } // or
-operator fun <T> MutableCollection<T>.plusAssign(element: T) { // implicit unit
-    this.add(element)
-}
-
-// + and - work with collections returning a new collection, while += and -= can mutate for mutable, and modified copy
-// for read-only(if declared var), you can use individual elements, or other collections with matching typees
-
-fun l() {
-    val list = arrayListOf(1)
-    list += 2
-    val newList = list + listOf(3, 4)
+class Email {}
+class Person1 {
+    var name = ""
+    private var _emails: List<Email>? = null
+    val emails: List<Email>
+        get() {
+            if (_emails == null) {
+                _emails = loadEmails(this)
+            }
+            return _emails!!
+        } // uses backing property
 }
 
 
-// Overloading unary operators: unaryPlus, unaryMinus, not, inc, dec
-
-operator fun Point.unaryMinus(): Point = Point(-x, -y)
-
-operator fun Point.inc(): Point = Point(this.x + 1, this.y + 1)
-
-fun main(args: Array<String>) {
-    var v = Point(2, 3)
-//    print(v-) // cant do this
-    println(-v)
-    println(v++) // both pre and post are generated
-    println(v)
-    println(++v)
+fun loadEmails(person: Person1): List<Email> {
+    print("load emails for ${person.name}")
+    return person.emails
 }
+
+class Person2 {
+    val emails by lazy { loadEmails(this) }
+    fun toPerson1() = Person1()
+}
+
+fun loadEmails(person: Person2): List<Email> {
+    return loadEmails(person.toPerson1())
+}
+
+// lazy function is thread safe by default but can bypass sync if newerr used in multi threaded environment
