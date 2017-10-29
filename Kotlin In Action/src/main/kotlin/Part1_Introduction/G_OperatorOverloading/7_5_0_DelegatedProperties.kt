@@ -1,5 +1,11 @@
 package Part1_Introduction.G_OperatorOverloading
 
+import java.beans.PropertyChangeListener
+import java.beans.PropertyChangeSupport
+import kotlin.properties.Delegates
+import kotlin.properties.ObservableProperty
+import kotlin.reflect.KProperty
+
 // Delegated properties: basics
 
 class Foo {
@@ -51,4 +57,60 @@ fun loadEmails(person: Person2): List<Email> {
     return loadEmails(person.toPerson1())
 }
 
-// lazy function is thread safe by default but can bypass sync if newerr used in multi threaded environment
+// lazy function is thread safe by default but can bypass sync if newer used in multi threaded environment
+
+
+// Implementing delegated properties - notifying listeners
+
+open class PropertyChangeAware {
+
+    protected val changeSupport = PropertyChangeSupport(this)
+    fun addProprtyChangeListene(listener: PropertyChangeListener) = changeSupport.addPropertyChangeListener(listener)
+    fun removePropertyChangeListener(listener: PropertyChangeListener) = changeSupport.removePropertyChangeListener(listener)
+}
+
+class Person3(val name: String, age: Int, salary: Int) : PropertyChangeAware() {
+
+    var age: Int = age
+        set(newValue) {
+            val oldValue = field
+            field = newValue
+            changeSupport.firePropertyChange("age", oldValue, newValue)
+        }
+
+    var salary: Int = salary
+        set(newValue) {
+            val oldValue = field
+            field = newValue
+            changeSupport.firePropertyChange("salary", oldValue, newValue)
+        }
+}
+
+fun makeChanges() {
+    val p = Person3("dimitry", 23, 2333)
+
+    p.addProprtyChangeListene(PropertyChangeListener { event ->
+        println("property ${event.propertyName} changed" +
+                "from ${event.oldValue} to ${event.newValue}")
+    })
+
+    p.age = 35
+    // will print
+}
+
+// this requires field identifiers, notifiers, attaching change listeners
+// we can extract out an ObservableProperty, and use the fields in the class, and make getValue, setValue as operators
+// and you need KProperty<*> ... or delegated properties
+
+class Person4(val name: String, age: Int, salary: Int) : PropertyChangeAware() {
+
+    private val observer = { prop: KProperty<*>, oldValue: Int, newValue: Int ->
+        changeSupport.firePropertyChange(prop.name, oldValue, newValue)
+    }
+
+    var age: Int by Delegates.observable(age, observer) // right of by need not be new instance creation, can be function
+    // call or another property/expression, so long as the value can hetValue and setValue for the compiler
+    var salary: Int by Delegates.observable(age, observer)
+
+}
+
