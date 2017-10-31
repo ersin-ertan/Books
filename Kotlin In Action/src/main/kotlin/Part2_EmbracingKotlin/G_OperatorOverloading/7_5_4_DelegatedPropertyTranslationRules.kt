@@ -1,4 +1,4 @@
-package Part1_Introduction.G_OperatorOverloading
+package Part2_EmbracingKotlin.G_OperatorOverloading
 
 // Delegated property translation rules
 
