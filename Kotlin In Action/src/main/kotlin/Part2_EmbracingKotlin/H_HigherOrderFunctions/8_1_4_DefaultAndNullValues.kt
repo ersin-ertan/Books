@@ -36,6 +36,77 @@ fun invoke(inp: Int, op: ((Int) -> String)?): String {
     return op?.invoke(inp) ?: "default"
 }
 
+
+// returning functions from function
+enum class ShippingMethod {
+    LAND, AIR
+}
+
+fun shippingCalculator(sm: ShippingMethod): (Int, Int) -> Double = when (sm) {
+    ShippingMethod.AIR -> { length, width -> length * width * 2.3 }
+    ShippingMethod.LAND -> { length, width -> length * width * 1.4 }
+}
+
+fun calcShippingCost() {
+    val calc = shippingCalculator(ShippingMethod.LAND)
+    // calc is the function
+    println("cost by land is: $${calc(3, 5)}")
+}
+
+// useful as a filter for contacts list, holding state of what you typed, the filters entries based on the predicate state
+// the get predicate function would be a function taking in a person and returning a boolean
+
+data class Person(val name: String, val number: Int?)
+class Filter(val personList: List<Person>) {
+    var prefix = ""
+    var hasNumber = true
+
+    fun getPeopleWithPrefix(): (Person) -> Boolean {
+        // if() return {}
+        // else return {}
+        return { p -> true } // not so sure about this one
+    }
+}
+
+// Removing duplication through lambdas -
+enum class OS { W, L, M, I, A }
+
+data class SiteVisit(val path: String, val duration: Double, val os: OS)
+
+val log = listOf(
+        SiteVisit("/", 34.3, OS.W),
+        SiteVisit("/", 24.3, OS.W),
+        SiteVisit("/login", 3.7, OS.I),
+        SiteVisit("/login", 13.7, OS.I),
+        SiteVisit("/signup", 4.4, OS.A),
+        SiteVisit("/signup", 54.4, OS.A),
+        SiteVisit("/signup", 74.4, OS.A)
+)
+
+val avgWDur = log.filter { it.os == OS.W }.map(SiteVisit::duration).average()
+// the only thing changing is the os, thus we extract that part out
+
+fun List<SiteVisit>.averageDurationFor(os: OS) = filter { it.os == os }.map(SiteVisit::duration).average()
+
+fun calcDur() {
+    println(avgWDur)
+    println()
+    OS.values().forEach {
+        println("${it.name}: ${log.averageDurationFor(it)} secs")
+    }
+}
+
+val mac = log.averageDurationFor(OS.M)
+
+// but for mobile platforms like I and A you need to filter{it.os in setOf(OS.I, OS.A)}
+// so we
+
+fun List<SiteVisit>.avgDurFor(predicate: (SiteVisit) -> Boolean) = filter(predicate).map(SiteVisit::duration).average()
+
+val mobile = log.avgDurFor { it.os in setOf(OS.M, OS.A) }
+
 fun main(args: Array<String>) {
-    testDefault()
+//    testDefault()
+//    calcShippingCost()
+    calcDur()
 }
