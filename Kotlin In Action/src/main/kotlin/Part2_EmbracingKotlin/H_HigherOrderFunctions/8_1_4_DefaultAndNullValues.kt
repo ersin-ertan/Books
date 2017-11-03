@@ -105,8 +105,13 @@ fun List<SiteVisit>.avgDurFor(predicate: (SiteVisit) -> Boolean) = filter(predic
 
 val mobile = log.avgDurFor { it.os in setOf(OS.M, OS.A) }
 
+fun Any.p(): Unit = println(this)
+
 fun main(args: Array<String>) {
 //    testDefault()
 //    calcShippingCost()
     calcDur()
+    println()
+    mac.p()
+    mobile.p()
 }
