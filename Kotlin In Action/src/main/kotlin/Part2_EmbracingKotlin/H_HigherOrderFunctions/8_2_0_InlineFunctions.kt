@@ -36,3 +36,20 @@ fun callInlineMe2(int: Int, op: (Int) -> Int) {
 
 // if you have two uses of an inline function in different locations with different lambdas, then the call sites are
 // inlined independently.
+
+
+// Restrictions on inline functions
+// not every function that uses lambdas can be inlined
+// when the function is inlined, the body of the lambda expression that's passed as an argument is substituted directly
+// into the resulting code. If the parameter is called, it can be inlined.
+// If the parameter is stored for further use, lambda expressions code can't be inlined, because there must be an object
+// that contains the code.
+
+//fun <T, R> Sequence<T>.map(transform: (T) -> R): Sequence<R> = TransformingSequence(this, transform)
+
+// map function doesn't call the function passed as the transform param directly, it passes this function to the constructor
+// of a class that stores it in a property. The lambda passed as the transform argument needs to be complied into a
+// standard non inline representation, anon class implementing a func interface.
+// Functions that take two or more lambdas as params may inline some by using noinline keyword on the param name
+
+inline fun inl(inlined: () -> Unit, noinline not: () -> Unit) {}
