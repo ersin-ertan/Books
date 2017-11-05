@@ -1,5 +1,7 @@
 package Part2_EmbracingKotlin.H_HigherOrderFunctions
 
+import p
+
 // inline functions: removing the overhead of lambdas
 
 // what about the performance of lambdas like with and apply
@@ -53,3 +55,36 @@ fun callInlineMe2(int: Int, op: (Int) -> Int) {
 // Functions that take two or more lambdas as params may inline some by using noinline keyword on the param name
 
 inline fun inl(inlined: () -> Unit, noinline not: () -> Unit) {}
+
+
+// Inlining collection operations - most collection functions in standard lib take lambda expressions as argument
+
+val people = listOf(Person("bill", 5), Person("tom", 3))
+
+fun operate() {
+    people.filter { it.number!! > 2 }.p() // filter is inline
+
+    // vs
+    val res = mutableListOf<Person>()
+    for (person in people) {
+        if (person.number!! > 3) res.add(person)
+    }
+}
+
+// no need to worry about performance, even when chained, because bodies are inlined so no extra classes or objects are
+// created. Thus if the number of elements is large since filter and map create intermediate collections, use a sequence
+// via .asSequence but lambdas used to process a sequence aren't inlined, so each sequence is represented as an object
+// storing a lambda in its field, and the terminal operation causes a chain of calls through each intermediate sequence
+// to be performed. THus is not best for all chains of collection operations, only for large collections.
+
+// Deciding when to declare functions as inline - can improve performance only with functions that take lambdas as
+// paramaters, else you must do additional measuring/investigation.
+
+// JVM does inlining at machine code level. The bytecode implmentation of each function is repeated only once, not copied
+// everywhere as with inline, stack trace is cleaner.
+
+// Otherwise the overhead you avoid through inlining is more significant, saving the call, but also the creation of extra
+// class for each lambda and object for lambda instance, it may help JVM. Also allows for features impossible
+// with regular lambdas: non local returns
+
+// If code is too large, try extracting code not realated to lambda argument into a non inline function
