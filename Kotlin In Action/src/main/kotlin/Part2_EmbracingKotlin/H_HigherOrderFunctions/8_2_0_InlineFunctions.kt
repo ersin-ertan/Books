@@ -1,6 +1,10 @@
 package Part2_EmbracingKotlin.H_HigherOrderFunctions
 
 import p
+import java.io.BufferedReader
+import java.io.FileReader
+import java.util.concurrent.locks.Lock
+import kotlin.concurrent.withLock
 
 // inline functions: removing the overhead of lambdas
 
@@ -88,3 +92,42 @@ fun operate() {
 // with regular lambdas: non local returns
 
 // If code is too large, try extracting code not realated to lambda argument into a non inline function
+
+
+// Using inlined lambdas for resource management
+/*
+Lambdas can remove duplicate code for hresource management: acquiring a resource before an operation and releasing it
+after. It can be a file, lock, database transaction, etc, commonly paired with try/finally.
+*/
+
+
+fun tryL() {
+    val l: Lock = Any() as Lock
+    l.withLock {
+        // accesses resource protected by lock
+    }
+}
+
+
+// The idiom of working with locks are extracted into a separate function:
+fun <T> Lock.withLock(action: () -> T): T {
+    lock()
+    try {
+        return action()
+    } finally {
+        unlock()
+    }
+}
+
+// files use try with resources in Java, but a similar semantic uses a lambda parameter
+fun readFirstLineFromFile(path: String): String {
+    BufferedReader(FileReader(path)).use { br ->
+        println("do work")
+        return@readFirstLineFromFile br.readLine()
+        // returns the line from the function, this is implicitly a non local return to readFirstLineFromFile
+        // (I made it explicit to see where it would return)
+    }
+}
+
+// the use function is an extension func called on a closable resource, taking in the lambda and auto closes regardless
+// of normal completion or thrown exception. Use is inlined thus no performance penalty.
