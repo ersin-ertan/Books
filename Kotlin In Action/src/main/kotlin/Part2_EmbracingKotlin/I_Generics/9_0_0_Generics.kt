@@ -18,3 +18,11 @@ package Part2_EmbracingKotlin.I_Generics
 // Kotlin lets you specify variance both for a generic class as a whole(declaration-site variance and
 // generic type(use site variance)
 // star projection syntax can be used when the exact type args are unknown or unimportant
+
+
+// reified type parameters - inlined functions type arguments type at runtime
+
+// Declaration site variance - specify whether a generic type with a type argument is a subtype or supertype of
+// another generic type with the same base type and different type of argument. Ex List<Int> to funcs expecting List<Any>
+
+// use site variance - same for specific use of generic type, same as java's wildcard
