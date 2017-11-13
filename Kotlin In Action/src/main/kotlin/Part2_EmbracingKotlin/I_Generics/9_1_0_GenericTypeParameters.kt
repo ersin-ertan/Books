@@ -74,4 +74,31 @@ open class C4 {}
 
 fun <T> ensureTraillingPeriod(seq: T) where T : C4, T : C3 {}
 
+open class CC : C4(), C3 {
+}
 
+val cc = ensureTraillingPeriod<CC>(object : CC() {})
+
+
+// Making type parameters non null
+
+class P<T> {
+    fun p(value: T) {
+        value?.hashCode() // is nullable thus ? for safe access
+    }
+}
+
+// T can be nullable
+val p = P<String?>()
+val pp = p.p(null) // null value
+val ppp = p.p("not")
+
+// apply the upperbound of any to make the value non null
+class N<T:Any>{
+    fun n(value:T){
+        value.hashCode()
+    }
+}
+
+//val n = N<String?>() // type argument is not within boundsn
+val nn = N<String>()
