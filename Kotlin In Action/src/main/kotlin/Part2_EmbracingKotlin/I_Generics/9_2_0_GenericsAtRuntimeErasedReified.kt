@@ -19,3 +19,35 @@ package Part2_EmbracingKotlin.I_Generics
 
 // Warning won't fail with as casts, if the class has the correct base type but wrong type argument because the type
 // is not known at runtime. You will se an unchecked cast warning.
+
+fun print(c: Collection<*>) {
+    // warning unchecked cast
+    val intList = c as? List<Int> ?: throw IllegalArgumentException("list is expected")
+    println(intList)
+}
+
+// call with a different container type and get IllegalArgumentException, call with wrong types in container to get
+// ClassCastException
+
+// is works with hard type argument on collection
+fun print1(c: Collection<Int>) {
+    if (c is List<Int>) {
+        print(c)
+    }
+}
+
+
+// Declaring functions with reified type parameters
+
+// generally this is not allowed
+//fun <T> isT(value: Any) = value is T // cannot check for erased types
+
+// inline, compiler will replace every call to the function with the actual code implemnting the function
+
+inline fun <reified T> isT(value: Any) = value is T // works
+
+//ex
+
+val items = listOf("one", 3)
+
+val i = items.filterIsInstance<String>()
