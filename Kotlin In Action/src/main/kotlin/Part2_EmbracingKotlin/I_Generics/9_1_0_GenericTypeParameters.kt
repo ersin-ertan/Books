@@ -82,16 +82,16 @@ val cc = ensureTraillingPeriod<CC>(object : CC() {})
 
 // Making type parameters non null
 
-class P<T> {
-    fun p(value: T) {
+class PP<T> {
+    fun pp(value: T) {
         value?.hashCode() // is nullable thus ? for safe access
     }
 }
 
 // T can be nullable
-val p = P<String?>()
-val pp = p.p(null) // null value
-val ppp = p.p("not")
+val p = PP<String?>()
+val pp = p.pp(null) // null value
+val ppp = p.pp("not")
 
 // apply the upperbound of any to make the value non null
 class N<T:Any>{

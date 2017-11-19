@@ -20,7 +20,7 @@ fun addAnswer(list: MutableList<Any>) {
 
 // but compile time error (book said runtime error), the idea is determining
 fun runtimeError() {
-    val strings = MutableList<Any>(0){}
+    val strings = MutableList<Any>(0) {}
     strings.add("a")
     // nor does calling addAnswer when the list values are known
     addAnswer(strings)
@@ -43,3 +43,67 @@ fun runtimeError() {
 // thus MutableList<A> isn't a subtype or super of MutableList<B>. Java all classes are invariant.
 
 // If B is a subtype of A, then List<A> is a subtype of List<B>, the interface/class is covariant.
+
+
+// 9.3.3 Covariance: preserved subtyping relation
+// a generic class like P<T>, where P<A> is a supertype of P<B>, subtyping is preserved. To declare a covariant class
+// of a type parameter put "out" keyword
+
+interface P<out T> { // T is covariant
+    fun p(): T
+}
+
+// you may now pass values of that class as function parameters and return values
+
+open class Animal {
+    fun feed() {}
+}
+
+class Herd<T : Animal> {
+    val size: Int
+        get() {
+            return 1
+        }
+
+    operator fun get(i: Int): T {
+        return size as T
+    }
+}
+
+fun feedAll(animals: Herd<Animal>) {
+    for (i in 0 until animals.size) animals[i].feed()
+}
+
+class Cat : Animal() { // cat is an animal, but is not covariant
+    fun cleanLitter() {}
+}
+
+fun takeCareOfCats(cats: Herd<Cat>) {
+    for (i in 0 until cats.size) {
+        cats[i].cleanLitter()
+    }
+//    feedAll(cats) // but Error: inferred type is Herd<Cat> but Herd<Animal> was expected
+}
+
+// we must make Herd covariant using out
+class Herd2<out T : Animal> {
+    val size: Int
+        get() {
+            return 1
+        }
+
+    operator fun get(i: Int): T {
+        return size as T
+    }
+}
+
+fun feedAll2(animals: Herd2<Animal>) {
+    for (i in 0 until animals.size) animals[i].feed()
+}
+
+fun takeCareOfCats2(cats: Herd2<Cat>) {
+    for (i in 0 until cats.size) {
+        cats[i].cleanLitter()
+    }
+    feedAll2(cats)
+}
