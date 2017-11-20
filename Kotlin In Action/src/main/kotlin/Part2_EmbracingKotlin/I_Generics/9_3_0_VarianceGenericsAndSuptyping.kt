@@ -107,3 +107,33 @@ fun takeCareOfCats2(cats: Herd2<Cat>) {
     }
     feedAll2(cats)
 }
+
+// making any class covariant would be unsafe, use type parameter constraints. using 'out' means it returns type T
+// but can not take them in
+
+// if T is used as the return type of a function, then its out, because function produces T
+// if T is used as the type. of the function parameter, it's in, consuming
+
+interface T<T> {
+    fun t(t: T/*this T is in*/): T // last T is out
+}
+
+// out preserves subtyping where P<Cat> is subtype of P<Animal>
+
+// in List, you can only get the element of type T, no methods store the value of type T in the list, thus covariance
+
+// the out can even be a type param for another generic :List<T> instead of simply returning T
+
+// you can't declare MutabelList<T> as covariant on its type parameter because it contains methods that take values of
+// T as parameters and return values of T, thus it is both out and in
+// Type parameter T is declared as 'out' but occurs in the 'in' position
+
+// constructor params are neither out nor in, even if it is declared out, you can use it in 'in' too
+
+
+// variance protects from class misuse when working with more generic types, since constructor can't be called later
+// there is no danger
+// But if you use val or var with a constructor parameter, you declare a getter and setter(if mutable) so the type
+// parameter is usind in both in/out position for read only properties and both for mutable properties
+
+class Herdd<T : Animal>(var leadAnimal: T, vararg animals: T) {}
