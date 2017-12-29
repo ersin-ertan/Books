@@ -5,4 +5,6 @@ include 'Kotlin In Action'
 findProject(':Kotlin In Action')?.name = 'kotlinInAction'
 include 'Intro To Compiler Construction Java'
 findProject(':Intro To Compiler Construction Java')?.name = 'introToCompilerConstruction'
+include 'Functional And Reactive Domain Modeling'
+findProject(':Functional And Reactive Domain Modeling')?.name = 'functionalAndReactiveDomainModeling'
 

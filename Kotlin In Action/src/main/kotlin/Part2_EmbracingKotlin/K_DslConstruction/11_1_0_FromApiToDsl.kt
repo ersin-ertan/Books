@@ -25,4 +25,11 @@ package Part2_EmbracingKotlin.K_DslConstruction
  DSLs are statically typed
 
  ex. val yesterday = 1.days.ago
+
+ 11.1.1 concept of domain specific languages
+
+ general purpose vs domain specific(sql, reg ex)
+
+ Using sql you use need operations, regex needs matches. DSLS tend to be declarative, but can be hard to
+ combine with the host/general purpose language.
 */
