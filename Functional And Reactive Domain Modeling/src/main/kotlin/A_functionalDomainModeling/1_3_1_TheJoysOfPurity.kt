@@ -97,7 +97,7 @@ class Ex06 {
         }.ev().map { it.balance.amount }.p()
 
         Try.monad().binding {
-            // is it with monad? just a guess
+            // this will fail
             val b = AccountServiceO.credit(a, BigDecimal.valueOf(100)).bind()
             val c = AccountServiceO.debit(b, BigDecimal.valueOf(200)).bind()
             yields(c)
