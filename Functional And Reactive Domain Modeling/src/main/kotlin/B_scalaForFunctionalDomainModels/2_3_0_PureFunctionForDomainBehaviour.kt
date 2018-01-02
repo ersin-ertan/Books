@@ -50,9 +50,9 @@ class Ex03 {
 
         class Amount(val a: Int)
 
-        fun getCurrencyBalance(acc: Account): Try<Amount> = Try { Amount() }
+        fun getCurrencyBalance(acc: Account): Try<Amount> = Try { Amount(0) }
         fun getAccountFrom(no: String): Try<Account> = Try { SavingsAccount("3", "eu", 3.4F) }
-        fun calculateNetAssetValue(a: Account, balance: Amount): Try<Amount> = Try { Amount() }
+        fun calculateNetAssetValue(a: Account, balance: Amount): Try<Amount> = Try { Amount(0) }
 
 
 //        val result:Try<Pair<Account, Amount>> =
