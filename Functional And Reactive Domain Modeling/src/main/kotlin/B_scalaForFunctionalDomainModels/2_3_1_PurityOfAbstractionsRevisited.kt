@@ -1,0 +1,2 @@
+package B_scalaForFunctionalDomainModels
+
