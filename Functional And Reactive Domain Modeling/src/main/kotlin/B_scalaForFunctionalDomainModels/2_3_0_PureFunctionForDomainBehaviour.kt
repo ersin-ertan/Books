@@ -62,9 +62,10 @@ class Ex03 {
 //                    val v = calculateNetAssetValue(s, b).bind()
 //
 //
-//                    if (v.a > 100000) yields(Pair(s, v))
+//                    if (v.a > 100000) yields(Pair(s, v)) // the if is ruining the compilation, what is the analog to filter
 //                    yields()
 //                }
+
         // looks something like this, lists net asset value from an account number if net asset value > 100,000
 // for comprehension is syntactic sugar on top of chained flatMaps and maps, if one fails, they all fail
 
