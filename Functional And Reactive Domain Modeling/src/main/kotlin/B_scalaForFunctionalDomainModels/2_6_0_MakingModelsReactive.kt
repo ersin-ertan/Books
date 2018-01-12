@@ -1,5 +1,7 @@
 package B_scalaForFunctionalDomainModels
 
+import kategory.*
+
 // 2.6.0 Making modes reactive with scala
 
 // Functional thinking and implementing with pure functions for domain models is the engineering
@@ -28,3 +30,61 @@ package B_scalaForFunctionalDomainModels
 // What models do we use, littering code with error checks is not a solution. Make code that raises exceptions explicit
 // via type system, and and use abstractions taht don't leak exception management details within your domain logic leaving
 // core logic functionally compositional.
+
+// Encoding explicit failure within the type, thus they never escape  from the try as a side effect.
+
+class Ex08 {
+
+    class SavingsAccount(val rate: Int)
+
+    fun <A : SavingsAccount> calculateInterest(acc: A, balance: Int): Try<Int> =
+            if (acc.rate == 0) Failure(Exception("Interest rate not found"))
+            else Success(10000)
+
+    fun <A : SavingsAccount> getCurrencyBalance(acc: A): Try<Int> = Success(1000)
+    fun <A : SavingsAccount> calculateNetAssetValue(acc: A, ccyBal: Int, interest: Int): Try<Int> =
+            Success(ccyBal + interest + 200)
+
+    // try gives you compositionality by being a monad and offering a lot of higher order functions
+    // like flatmap that helps compose with other functions that may fail
+
+    fun composingWithTry() {
+
+        Try.monad().binding {
+
+            val a = SavingsAccount(1)
+
+            val b = getCurrencyBalance(a).bind()
+            val i = calculateInterest(a, b).bind()
+            val v = calculateNetAssetValue(a, b, i).bind()
+
+            yields(Pair(a, v))
+        }
+
+        // is equal to
+
+
+        val a = SavingsAccount(1)
+
+        getCurrencyBalance(a)
+                .flatMap { b ->
+                    calculateInterest(a, b)
+                            .flatMap { i -> calculateNetAssetValue(a, b, i) }
+                }
+                .map { value -> /*my int value used here*/ }
+    }
+
+    // 2.6.3 Managing latency
+
+    // gUarantee some ebounds on latency, wrap long running computations in a future. Computation is delegated to
+    // background thread. Future is also a monad.
+
+//    fun <A : SavingsAccount> calculateInterestF(acc: A, bal: Int): Future<Int>
+    // fun getCur
+    // fun calcNet
+
+    // compose functions sequentially to yield another Future. Entire computation is delegated to background thread.
+
+    // onComplete{
+    // when(v) is Success ... is Failure ...
+}
