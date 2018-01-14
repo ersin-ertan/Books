@@ -7,4 +7,7 @@ include 'Intro To Compiler Construction Java'
 findProject(':Intro To Compiler Construction Java')?.name = 'introToCompilerConstruction'
 include 'Functional And Reactive Domain Modeling'
 findProject(':Functional And Reactive Domain Modeling')?.name = 'functionalAndReactiveDomainModeling'
+include 'Functional Reactive Programming'
+findProject(':Functional Reactive Programming')?.name = 'functionalReactiveProgramming'
+include 'sodium'
 

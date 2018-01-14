@@ -35,13 +35,13 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: io.kindedj:kindedj:1.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: io.kategory:kategory-annotations:0.4.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.10" level="project" />
+    <orderEntry type="library" name="Gradle: io.kategory:kategory:0.4.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.10" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.10" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jre7:1.2.0" level="project" />
-    <orderEntry type="library" name="Gradle: io.kategory:kategory:0.4.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.10" level="project" />
-    <orderEntry type="library" name="Gradle: io.kategory:kategory-annotations:0.4.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="functionalAndReactiveDomainModeling_main" />
 </module>
