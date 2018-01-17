@@ -42,17 +42,17 @@ class Ex03 {
 
         companion object {
 
-            private fun closeDateCheck(openDate: Option<Date>, closeDate: Option<Date>): Try<Pair<Date, Option<Date>>> {
-                val od = openDate.getOrElse { today }
-                return closeDate.map { cd ->
-                    when (cd.after(od)) {
-                        true -> Success(Pair(od, Some(cd)))
-                        false -> Failure<Pair<Date, Option<Date>>>(Exception())
+            private fun closeDateCheck(openDate: Option<Date>, closeDate: Option<Date>): Try<Pair<Date, Option<Date>>> =
+                    with(openDate.getOrElse { today }) {
+                        closeDate.map { cd ->
+                            if (cd.after(this)) Success(Pair(this, Some(cd)))
+                            else Failure<Pair<Date, Option<Date>>>(Exception())
+                        }.getOrElse { Success(Pair(this, closeDate)) }
                     }
-                }.fold({ Success(Pair(od, closeDate)) }, { it })
-            }
+//                }.fold({ Success(Pair(od, closeDate)) }, { it })
+        }
 
-            // generic example to understand compilers type checking
+        // generic example to understand compilers type checking
 /*
 Paco's response to why I was having a problem with the types
 ye okay so this is usual typechecker problems, nothing to worry
@@ -73,32 +73,31 @@ so you have to hint it, algorithm then sees the common parent and the generics m
                     }
 */
 
-            fun checkingAccount(no: String,
-                                name: String,
-                                openDate: Option<Date>,
-                                closeDate: Option<Date>,
-                                balance: Balance): Try<Account> =
-                    closeDateCheck(openDate, closeDate)
-                            .map { d -> CheckingAccount(no, name, Some(d.first), d.second, balance) }
+        fun checkingAccount(no: String,
+                            name: String,
+                            openDate: Option<Date>,
+                            closeDate: Option<Date>,
+                            balance: Balance): Try<Account> =
+                closeDateCheck(openDate, closeDate)
+                        .map { d -> CheckingAccount(no, name, Some(d.first), d.second, balance) }
 
 
-            fun savingsAccount(
-                    no: String,
-                    name: String,
-                    openDate: Option<Date>,
-                    closeDate: Option<Date>,
-                    balance: Balance,
-                    rate: Float): Try<Account> =
-                    closeDateCheck(openDate, closeDate)
-                            .map { d ->
-                                if (rate <= 0F) throw Exception("Interest rate $rate must be > 0")
-                                else SavingsAccount(no, name, Some(d.first), d.second, balance, rate)
-                            }
+        fun savingsAccount(
+                no: String,
+                name: String,
+                openDate: Option<Date>,
+                closeDate: Option<Date>,
+                balance: Balance,
+                rate: Float): Try<Account> =
+                closeDateCheck(openDate, closeDate)
+                        .map { d ->
+                            if (rate <= 0F) throw Exception("Interest rate $rate must be > 0")
+                            else SavingsAccount(no, name, Some(d.first), d.second, balance, rate)
+                        }
 
-        }
     }
-
 }
+
 
 // smart constructors idiom useful for instantiation of domain objcets that honour set of constraints
 // constructor of class needs to be protected from users(unsave creation) via private and final (closed for kotlin)
