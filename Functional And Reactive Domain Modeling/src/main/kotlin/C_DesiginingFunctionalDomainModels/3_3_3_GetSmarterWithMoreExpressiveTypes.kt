@@ -103,3 +103,24 @@ so you have to hint it, algorithm then sees the common parent and the generics m
 // constructor of class needs to be protected from users(unsave creation) via private and final (closed for kotlin)
 // ppublish api needs to be explicit about failure, returned data type must be expressive eneugh to teh user
 // simple objects that need no explicit validation, directly use class constructor. named arguments make constructor invocation expressive
+
+/*
+
+Raul I think the use of Try and Exception there are not needed and I'd consider it abuse.
+Try is not needed because that is not computing something that it may fail.
+Exception is not needed because it doesn't bring additional information and it suffers from getting underneath called
+Throwable.fillInStackTrace which is expensive and platform dependent.
+Here is an alternative encoding that just uses regular values to accomplish the same thing:
+sealed class DateStatus
+object OutOfRangeDate : DateStatus()
+object InRangeDate: DateStatus()
+
+fun closeDateCheck2(openDate: Option<Date>, closeDate: Option<Date>): DateStatus =
+        Option.applicative()
+                .map2(openDate.orElse { Some(Date()) }, closeDate, { (open, close) ->
+                    if (close.after(open)) InRangeDate
+                    else OutOfRangeDate
+                }).ev().getOrElse { InRangeDate }
+Try is an anemic version of Either. IMO is only useful when you are computing over something that may crash with an
+exception, but creating your own ADT or using your own types to represent known errors is always superior to using Try.
+*/
