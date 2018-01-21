@@ -1,9 +1,9 @@
 package A_functionalDomainModeling
 
-import kategory.None
-import kategory.Some
-import kategory.Try
-import kategory.getOrElse
+import arrow.core.None
+import arrow.core.Some
+import arrow.core.getOrElse
+import arrow.data.Try
 import java.sql.Date
 import java.time.Instant
 

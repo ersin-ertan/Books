@@ -1,7 +1,7 @@
 package B_scalaForFunctionalDomainModels
 
-import kategory.Option
-import kategory.Some
+import arrow.core.Option
+import arrow.core.Some
 
 // 2.5.0 Functional in the small, OO in the large
 

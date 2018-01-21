@@ -1,6 +1,7 @@
 package A_functionalDomainModeling
 
-import kategory.*
+import arrow.data.*
+import arrow.typeclasses.binding
 import java.math.BigDecimal
 import java.time.Instant
 import java.util.*

@@ -79,7 +79,7 @@ private class Ex05() {
 
     fun runExample() {
 
-        val a = Account("a1", "John", Date() )
+        val a = Account("a1", "John", Date())
         (a.balance.amount == Balance(BigDecimal.valueOf(0)).amount).p()
         a.balance.amount.p()
 

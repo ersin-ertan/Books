@@ -1,9 +1,9 @@
 package C_DesiginingFunctionalDomainModels
 
 import A_functionalDomainModeling.p
-import kategory.Option
-import kategory.Some
-import kategory.getOrElse
+import arrow.core.Option
+import arrow.core.Some
+import arrow.core.getOrElse
 import java.time.Instant
 import java.util.*
 

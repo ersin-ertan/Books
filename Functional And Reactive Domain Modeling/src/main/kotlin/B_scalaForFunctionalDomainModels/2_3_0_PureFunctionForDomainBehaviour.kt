@@ -1,7 +1,9 @@
 package B_scalaForFunctionalDomainModels
 
 import B_scalaForFunctionalDomainModels.Ex03.AccountService.calculateInterest
-import kategory.*
+import arrow.data.Success
+import arrow.data.Try
+import arrow.data.getOrElse
 
 // 2.3.0 Pure Functions ofr domain behaviour
 

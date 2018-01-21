@@ -1,8 +1,8 @@
 package A_functionalDomainModeling
 
-import kategory.Failure
-import kategory.Success
-import kategory.Try
+import arrow.data.Failure
+import arrow.data.Success
+import arrow.data.Try
 
 // 1.5.0 Virtues of pure model
 

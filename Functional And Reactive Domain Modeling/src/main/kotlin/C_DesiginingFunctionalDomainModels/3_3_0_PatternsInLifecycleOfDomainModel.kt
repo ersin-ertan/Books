@@ -1,9 +1,9 @@
 package C_DesiginingFunctionalDomainModels
 
 import A_functionalDomainModeling.p
-import kategory.None
-import kategory.Option
-import kategory.Some
+import arrow.core.None
+import arrow.core.Option
+import arrow.core.Some
 
 // 3.3.3 Patterns in the lifecycle of a domain model
 
@@ -70,7 +70,7 @@ class Ex02 {
 
             private val isValid: (Int) -> Boolean = { it in 1..7 }
 
-            fun dayOfWeek(d: Int): Option<Ex02.DayOfWeek> = if (isValid(d)) Some(unsafeDayOfWeek(d)) else None
+            fun dayOfWeek(d: Int): Option<DayOfWeek> = if (isValid(d)) Some(unsafeDayOfWeek(d)) else None
 
         }
     }

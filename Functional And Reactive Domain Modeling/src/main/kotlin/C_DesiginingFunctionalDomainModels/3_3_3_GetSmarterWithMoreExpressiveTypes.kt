@@ -1,7 +1,12 @@
 package C_DesiginingFunctionalDomainModels
 
 import A_functionalDomainModeling.today
-import kategory.*
+import arrow.core.Option
+import arrow.core.Some
+import arrow.core.getOrElse
+import arrow.data.Failure
+import arrow.data.Success
+import arrow.data.Try
 import java.util.*
 
 // 3.3.3 Get smarter with more expressive types

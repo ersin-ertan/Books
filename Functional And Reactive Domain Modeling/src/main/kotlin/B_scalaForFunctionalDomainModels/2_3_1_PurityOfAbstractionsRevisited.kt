@@ -1,6 +1,6 @@
 package B_scalaForFunctionalDomainModels
 
-import kategory.andThen
+import arrow.core.andThen
 
 // 2.3.1 Purity of abstractions, revisited
 
@@ -62,8 +62,8 @@ fun testParallelExecutionOnCollection() {
 
     fun addOne(i: Int) = i + 1
     val deferred = listOf(1, 2, 3).map { n ->
-//        async { // requires coroutines
-            addOne(n)
+        //        async { // requires coroutines
+        addOne(n)
 //        }
     }
 }

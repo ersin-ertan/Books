@@ -1,8 +1,8 @@
 package B_scalaForFunctionalDomainModels
 
-import kategory.Failure
-import kategory.Success
-import kategory.Try
+import arrow.data.Failure
+import arrow.data.Success
+import arrow.data.Try
 
 // 2.0.0 Scala for functional domains
 

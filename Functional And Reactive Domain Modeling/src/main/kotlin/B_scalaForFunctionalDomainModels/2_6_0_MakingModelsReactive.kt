@@ -1,6 +1,10 @@
 package B_scalaForFunctionalDomainModels
 
-import kategory.*
+import arrow.data.Failure
+import arrow.data.Success
+import arrow.data.Try
+import arrow.data.monad
+import arrow.typeclasses.binding
 
 // 2.6.0 Making modes reactive with scala
 

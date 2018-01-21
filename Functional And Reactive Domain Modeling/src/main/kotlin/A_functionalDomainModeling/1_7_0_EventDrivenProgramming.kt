@@ -1,8 +1,5 @@
 package A_functionalDomainModeling
 
-import java.util.concurrent.Future
-import java.util.concurrent.FutureTask
-
 // 1.7.0 Event driven programming
 
 // Ex portfolio statement of all holdings from the bank: general currency holdings, equity holdings, debt holdings, loan info,
@@ -10,16 +7,16 @@ import java.util.concurrent.FutureTask
 
 // Sequential calls means the latency of computation is the sum of the latencies of all individual functions
 
-fun r1(){}
-fun r2(){}
-fun r3(){}
-fun r4(){}
-fun r5(){}
-fun r6(){}
+fun r1() {}
+fun r2() {}
+fun r3() {}
+fun r4() {}
+fun r5() {}
+fun r6() {}
 
 // distribute the processing across multiple parallel units of computation, keep main thread in the role of coordinator
 
-class Ex09(){
+class Ex09() {
 
     class Balance
 
@@ -27,9 +24,9 @@ class Ex09(){
 // val equ: Future<Balance> = getEquityBalance()
 // val debt: Future<Balance> = getDebtBalance()
 
-    private fun getCurrencyBalance(){} // : Future<Balance> {}
-    private fun getEquityBalance(){}  // : Future<Balance> {}
-    private fun getDebtBalance(){}   // : Future<Balance> {}
+    private fun getCurrencyBalance() {} // : Future<Balance> {}
+    private fun getEquityBalance() {}  // : Future<Balance> {}
+    private fun getDebtBalance() {}   // : Future<Balance> {}
 
     class Portfolio
 

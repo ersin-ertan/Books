@@ -1,7 +1,9 @@
 package C_DesiginingFunctionalDomainModels
 
-import A_functionalDomainModeling.today
-import kategory.*
+import arrow.core.*
+import arrow.data.*
+import arrow.syntax.order.lt
+import arrow.typeclasses.binding
 
 // 3.2.0 Defining an algebra for a domain service
 
