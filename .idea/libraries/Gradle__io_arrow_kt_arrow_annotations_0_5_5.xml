@@ -2,10 +2,12 @@
   <library name="Gradle: io.arrow-kt:arrow-annotations:0.5.5">
     <CLASSES>
       <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.2.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-annotations/0.5.5/9f5fc86172229bc407d2b68bb8da0e88800996a2/arrow-annotations-0.5.5.jar!/" />
+      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.4.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-annotations/0.5.5/9f5fc86172229bc407d2b68bb8da0e88800996a2/arrow-annotations-0.5.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.2.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-annotations/0.5.5/c3af231bdb5052a77a61413e8ff2f5e6c6936190/arrow-annotations-0.5.5-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.4.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-annotations/0.5.5/c3af231bdb5052a77a61413e8ff2f5e6c6936190/arrow-annotations-0.5.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

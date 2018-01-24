@@ -112,7 +112,7 @@ class Ex07 {
 
     // function1 as the reader
     interface AccountService1<Account, Amount, Balance> {
-        // function return type or Function1??
+        // function return type or Function1?? paco says normal return type is the right one
 //        fun open(num: String, name: String, openingDate: Option<Date>): (AccountRepository)->Try<Account>
 //        fun open(no: String, name: String, openingDate: Option<Date>):Function1<AccountRepository, Try<Account>>
     }

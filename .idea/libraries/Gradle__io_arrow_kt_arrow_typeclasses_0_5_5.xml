@@ -2,10 +2,12 @@
   <library name="Gradle: io.arrow-kt:arrow-typeclasses:0.5.5">
     <CLASSES>
       <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.2.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-typeclasses/0.5.5/4de27bfba4b607b29becc87c0423d650517ff50b/arrow-typeclasses-0.5.5.jar!/" />
+      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.4.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-typeclasses/0.5.5/4de27bfba4b607b29becc87c0423d650517ff50b/arrow-typeclasses-0.5.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.2.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-typeclasses/0.5.5/cccf9eb1fc2c223fd32610e6d73e5809ddeb993d/arrow-typeclasses-0.5.5-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.4.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-typeclasses/0.5.5/cccf9eb1fc2c223fd32610e6d73e5809ddeb993d/arrow-typeclasses-0.5.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
