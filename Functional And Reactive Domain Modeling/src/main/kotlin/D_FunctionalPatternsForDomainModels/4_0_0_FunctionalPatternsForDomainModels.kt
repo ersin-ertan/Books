@@ -1,7 +1,8 @@
 package D_FunctionalPatternsForDomainModels
 
-import arrow.syntax.order.gt
-import arrow.typeclasses.Monoid
+import arrow.HK
+import arrow.core.Eval
+import arrow.typeclasses.Foldable
 import java.math.BigDecimal
 import java.util.*
 
@@ -118,4 +119,60 @@ class Ex01 {
 
     // operation within fold is no an operation on a monoid instead of hardcoded operations on domain specific types
 
+    interface Analytics1<Transaction, Balance, Money>{
+//        fun  maxDebitOnDay(txns:List<Transaction>)(implicit m:Monoid<Money>):Money
+//        fun sumBalances(bs:List<Balance>)(implicit m:Monoid<Money>):Money
+    }
+
+    object AnalyticsO : Analytics1<Transaction, Balance, Money>{
+//        fun maxDebitOnDay ... txns.filter{ it.txnType == DR}.foldLeft(m.zero) { (a,txn) -> m.op(a,valueOf(txn))}
+    // same for sum of Balances
+    }
+
+    // Abstracting over the context
+    // both functions fold over a collection after mapping through a function that generates a monoid
+    // map using valueOf which is Transaction -> Money and Balance -> Money
+    // Money is a monoid, if collection has elements that are monoids, no mapping needed
+    // Define collection as more generic Foldable<A>
+    /*
+    * interface Foldable<F<_>>{
+    * fun fold ...
+    * fun foldMap ...
+    * */
+
+    class F
+    class A : Foldable<F> {
+        override fun <A, B> foldLeft(fa: HK<F, A>, b: B, f: (B, A) -> B): B {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun <A, B> foldRight(fa: HK<F, A>, lb: Eval<B>, f: (A, Eval<B>) -> Eval<B>): Eval<B> {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+    }
+
+    // Given Foldable<A> a type B thats a monoid and a mapping function between a and B. package foldMap into a combinator
+    // that abstracts your requirements of maxdebitonday and sumbalances without sacrificing parametricity.
+
+    // This is the second step in making your model generic using design matterns(abstract over context, type constructor
+    // of abstraction)
+
+    object AnalyticsO1:Analytics1<Transaction,Balance, Money>{
+//        fun maxDebitOnDay(txns:List<Transaction>){ (implicit m:Monoid<Money>)
+//            mapReduce(txns.filter(it.txnType == Dr)) (valueOf)
+//        }
+
+//        fun sumBalances ... mapReduce(bs) (creditBalance)
+    }
 }
+
+// Why Monoid or Folable?
+// More generic: domain behaviour implemented in terms of generic mapReduce function, reaising abstraction level of model.
+// mapReduce is generic to be reused as a solution to other similar problems, patern mining you can discover generic
+// abstraction formed by unifing algebras of two of our functional patterns Monoid Foldable
+
+// More abstract: abstract over operation using Monoid, and type constructor usin Foldable. Model is modular, easier to manage,
+// and verify
+
+// Parallilizable:A: monodial operation is associative and can be prallelized(all associative operations are) computed
+// incrementally and cached.
