@@ -1,7 +1,11 @@
 package D_FunctionalPatternsForDomainModels
 
-//4.2 Basic patterns of computation in typed functional programming
+import arrow.core.Option
+import arrow.data.Validated
+import java.math.BigDecimal
+import java.util.*
 
+//4.2 Basic patterns of computation in typed functional programming
 /*
 In typed functional programing language most important aspect of domain modeling is organization of computation
 structures using type system to achieve maximum compositionality within model.
@@ -38,13 +42,18 @@ validated object or an error indicating why fail, contexts will be processed eit
 
 Introduce context that abstracts result of validation, enure it conforms to rules o domain. Context Validation<E,A> as
 the type constructor. E error, A object thus Validation<String, A> alagebra and type alias of validations.
+*/
+typealias V<A> = Validated<String, A>
 
-typealias V<A> = Validation<String, A>
+class Ex02 {
 
-fun validateAccountNo(no:String):V<String>
-fun validateOpenCloseDate(openDate:Option<Date, closeDate:Option<Date): V<Pair<Date, Option<Date>>>
-fun validateRateOfInterest(rate:bigDecimal):V<BigDecimal>
-
+    interface Va {
+        fun validateAccountNo(no: String): V<String>
+        fun validateOpenCloseDate(openDate: Option<Date>, closeDate: Option<Date>): V<Pair<Date, Option<Date>>>
+        fun validateRateOfInterest(rate: BigDecimal): V<BigDecimal>
+    }
+}
+/*
 Know not of the implementation, just how it fits into the algebra of validation functions. Three invokations yields
 three instances of V<_> and if all success extract the validated args and pass them to a function f constructing the
 final validated object, else report errors.
@@ -57,8 +66,6 @@ or
 fun lift3<V<_>, A,B,C,D>(f:(A,B,C) -> D):(V<A>, V<B>, V<C>) -> V<D> = apply3(_,_,_)(f)
 
 lift pure function f into context V.
-
-
 
 
 */
