@@ -1,7 +1,11 @@
 package D_FunctionalPatternsForDomainModels
 
+import A_functionalDomainModeling.p
+import arrow.core.None
 import arrow.core.Option
 import arrow.data.Validated
+import arrow.syntax.collections.optionTraverse
+import arrow.syntax.option.some
 import java.math.BigDecimal
 import java.util.*
 
@@ -68,4 +72,29 @@ fun lift3<V<_>, A,B,C,D>(f:(A,B,C) -> D):(V<A>, V<B>, V<C>) -> V<D> = apply3(_,_
 lift pure function f into context V.
 
 
+Applicative Functor: used for applicative effects. Applicative functor builds capabilities on top of what a functor offers.
+Effects are sequences through all the arguments regardless of result each produces.
+
 */
+
+fun main(args: Array<String>) {
+    class Account(val bal: Int = 0, val isClosed: Boolean)
+
+    val account = listOf<Account>(Account(4, true), Account(3, false), Account(2, true), Account(1, false), Account(0, true))
+
+
+//    compute multiple independent values resulting from operations that do not depend on each other.
+
+
+    listOf(1, 3, 4).optionTraverse { x: Int -> ((x + 1).some()) }.p()
+    listOf(1, 3, 4).optionTraverse { (it + 1).some() }.p()
+    "same".p()
+
+    listOf(2, 4, 6).optionTraverse { if (it % 2 == 0) it.some() else None }.p()
+    listOf(2, 4, 5).optionTraverse { if (it % 2 == 0) it.some() else None }.p()
+
+    // all or nothing
+    // if one fails all still run
+
+
+}
