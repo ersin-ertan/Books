@@ -106,7 +106,7 @@ private class P02 {
             b += 2
         }
 
-        if (b != 0) throw IllegalStateException("bs not 0, your full of shit")
+        if (b != 0) throw IllegalStateException("bs not 0, you're full of poop")
 
         class A {
             var variable = 1
