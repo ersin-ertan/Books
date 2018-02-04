@@ -54,7 +54,7 @@ Form a Consistency boundary within itself, instantiation must have all composing
 objects within, the graph becomes an aggregate. Aggregate within bounded context is a transaction boundary in model.
 One entity in aggregate is the aggregate root, single point of interaction with clients: ensuring consistency boundary of
 business rules and transactions within aggregate, prevent implementation of aggregate from leaking out to its clients like
-a facade for all operationsn that the aggregate supports
+a facade for all operations that the aggregate supports
 */
 
 private class Ex02() {
