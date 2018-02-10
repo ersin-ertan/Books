@@ -46,7 +46,7 @@ class Ex05 {
     class SavingsAccount(override val number: String, override val name: String, val dateOfOpening: Int, val rateOfInterest: Float) : Account
 
     // sum types, generally known as type CheckingAccount = string x string x date, thus a collection of all valid combinations of
-    // tuple(string, string, da te), cartesian product of these three data types, thus a Product type
+    // tuple(string, string, date), cartesian product of these three data types, thus a Product type
 
     // Account is a sum tpe and each type of account is a product type
 }
