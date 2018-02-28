@@ -4,6 +4,10 @@
     <bytecodeTargetLevel target="1.8">
       <module name="Books_main" target="1.8" />
       <module name="Books_test" target="1.8" />
+      <module name="crackingTheCodingInterview_main" target="1.8" />
+      <module name="crackingTheCodingInterview_test" target="1.8" />
+      <module name="eventBasedProgramming_main" target="1.8" />
+      <module name="eventBasedProgramming_test" target="1.8" />
       <module name="functionalAndReactiveDomainModeling_main" target="1.8" />
       <module name="functionalAndReactiveDomainModeling_test" target="1.8" />
       <module name="functionalReactiveProgramming_main" target="1.8" />

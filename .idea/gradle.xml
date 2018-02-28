@@ -10,6 +10,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Cracking The Coding Interview" />
+            <option value="$PROJECT_DIR$/Event Based Programming" />
             <option value="$PROJECT_DIR$/Functional And Reactive Domain Modeling" />
             <option value="$PROJECT_DIR$/Functional Reactive Programming" />
             <option value="$PROJECT_DIR$/Intro To Compiler Construction Java" />

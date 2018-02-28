@@ -10,4 +10,8 @@ findProject(':Functional And Reactive Domain Modeling')?.name = 'functionalAndRe
 include 'Functional Reactive Programming'
 findProject(':Functional Reactive Programming')?.name = 'functionalReactiveProgramming'
 include 'sodium'
+include 'Event Based Programming'
+findProject(':Event Based Programming')?.name = 'eventBasedProgramming'
+include 'Cracking The Coding Interview'
+findProject(':Cracking The Coding Interview')?.name = 'crackingTheCodingInterview'
 
