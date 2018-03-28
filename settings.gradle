@@ -14,4 +14,6 @@ include 'Event Based Programming'
 findProject(':Event Based Programming')?.name = 'eventBasedProgramming'
 include 'Cracking The Coding Interview'
 findProject(':Cracking The Coding Interview')?.name = 'crackingTheCodingInterview'
+include 'Functional Kotlin'
+findProject(':Functional Kotlin')?.name = 'functionalKotlin'
 

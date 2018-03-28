@@ -10,6 +10,8 @@
       <module name="eventBasedProgramming_test" target="1.8" />
       <module name="functionalAndReactiveDomainModeling_main" target="1.8" />
       <module name="functionalAndReactiveDomainModeling_test" target="1.8" />
+      <module name="functionalKotlin_main" target="1.8" />
+      <module name="functionalKotlin_test" target="1.8" />
       <module name="functionalReactiveProgramming_main" target="1.8" />
       <module name="functionalReactiveProgramming_test" target="1.8" />
       <module name="introToCompilerConstruction_main" target="1.8" />

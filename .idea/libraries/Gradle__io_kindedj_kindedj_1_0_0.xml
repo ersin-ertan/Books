@@ -3,7 +3,7 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/Could not find io.kindedj:kindedj:1.0.0." />
       <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.2.1/caches/modules-2/files-2.1/io.kindedj/kindedj/1.0.0/6d99b327adb380d9db29b3a377c3c541aa242f80/kindedj-1.0.0.jar!/" />
-      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.4.1/caches/modules-2/files-2.1/io.kindedj/kindedj/1.0.0/6d99b327adb380d9db29b3a377c3c541aa242f80/kindedj-1.0.0.jar!/" />
+      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.5.1/caches/modules-2/files-2.1/io.kindedj/kindedj/1.0.0/6d99b327adb380d9db29b3a377c3c541aa242f80/kindedj-1.0.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

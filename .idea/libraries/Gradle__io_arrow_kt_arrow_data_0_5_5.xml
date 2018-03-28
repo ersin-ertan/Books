@@ -2,12 +2,12 @@
   <library name="Gradle: io.arrow-kt:arrow-data:0.5.5">
     <CLASSES>
       <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.2.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-data/0.5.5/9df08faa915616ce0a7df605a7d14fa6368d7919/arrow-data-0.5.5.jar!/" />
-      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.4.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-data/0.5.5/9df08faa915616ce0a7df605a7d14fa6368d7919/arrow-data-0.5.5.jar!/" />
+      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.5.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-data/0.5.5/9df08faa915616ce0a7df605a7d14fa6368d7919/arrow-data-0.5.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.2.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-data/0.5.5/e149a03a6e489555b3c1401597158bcfb278b4b/arrow-data-0.5.5-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.4.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-data/0.5.5/e149a03a6e489555b3c1401597158bcfb278b4b/arrow-data-0.5.5-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.sdkman/candidates/gradle/4.5.1/caches/modules-2/files-2.1/io.arrow-kt/arrow-data/0.5.5/e149a03a6e489555b3c1401597158bcfb278b4b/arrow-data-0.5.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
