@@ -3,10 +3,8 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="disableWrapperSourceDistributionNotification" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -18,6 +16,7 @@
             <option value="$PROJECT_DIR$/Intro To Compiler Construction Java" />
             <option value="$PROJECT_DIR$/Kotlin In Action" />
             <option value="$PROJECT_DIR$/Language Implementation Patterns" />
+            <option value="$PROJECT_DIR$/Scala With Cats" />
             <option value="$PROJECT_DIR$/sodium" />
           </set>
         </option>

@@ -16,4 +16,6 @@ include 'Cracking The Coding Interview'
 findProject(':Cracking The Coding Interview')?.name = 'crackingTheCodingInterview'
 include 'Functional Kotlin'
 findProject(':Functional Kotlin')?.name = 'functionalKotlin'
+include 'Scala With Cats'
+findProject(':Scala With Cats')?.name = 'scalawithcats'
 
