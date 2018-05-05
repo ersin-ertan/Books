@@ -8,6 +8,9 @@ import ch01.p
 
 // 2.3 Exercise - Make Monoids
 
+// turns out there was a bug in option monoid
+// https://gitter.im/arrow-kt/Lobby?at=5aebb85bb37eab7d0466e78b
+// where none was not defaulting to the monoids empty value
 
 // for boolean
 val boolAndMonoid = object : Monoid<Boolean> {

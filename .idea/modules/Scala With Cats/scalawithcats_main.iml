@@ -23,6 +23,7 @@
           <option name="pluginClasspaths">
             <array />
           </option>
+          <option name="coroutinesState" value="enable" />
         </compilerArguments>
       </configuration>
     </facet>

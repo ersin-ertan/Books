@@ -14,7 +14,7 @@ package ch01
 
 // Covariance F<B> is a subtype of F<A> if B is a subtype of A
 // Useful for modelling many types, including collections like List/Option
-// out keyword
+// out keyword or +A in scala
 sealed class Shape
 
 class Circle(radius: Double) : Shape()
@@ -24,7 +24,7 @@ val shapes: List<Shape> = circles
 
 // Contravariance - F<B> is a subtype of F<A> if A is a subtype of B! wow
 // Usefull for modelling process
-// in keyword
+// in keyword or -A in scala
 interface JWriter<in A> {
     fun write(value: A): Json
 }
