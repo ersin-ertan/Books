@@ -152,6 +152,8 @@ fun showEx() {
         val color = it.color
         "$name is a $age year old $color cat"
     }
+    val c2 = ch01.Show<Cat> { "$name is a $age year old $color cat" }
+
     val cat = Cat("Tim", 23, "blue")
 //    cat.show // this doesn't work, unless I create an extension method
 //    fun Cat.show() = "$name is a $age year old $color cat"
@@ -172,6 +174,11 @@ fun comparingWithEq() {
     val iei = object : IntEqInstance {}
     iei.run { 3.eqv(5) }
 
+
+    val catEq = Eq<Cat> { c, cc -> c == cc }
+    val catEq1 = ch01.Eq<Cat> { c, cc -> c.color == cc.color }
+
+//    val isCatEq  = catEq1.run { Cat("2", 2, "3").eqv() } // doesnt work, must have two names, not receiver lambda
 
     val dateEq: Eq<Date> = Eq { d1, d2 -> d1.time == d2.time }
     val x = Date()
