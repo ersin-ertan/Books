@@ -4,7 +4,7 @@ import arrow.core.*
 import arrow.data.k
 import arrow.instances.Function1FunctorInstance
 import arrow.instances.OptionFunctorInstance
-import ch01.p
+import p
 
 /*
 Examine type class, instances, and syntax

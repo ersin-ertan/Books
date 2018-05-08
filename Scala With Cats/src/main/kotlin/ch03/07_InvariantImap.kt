@@ -1,6 +1,6 @@
 package ch03
 
-import ch01.p
+import p
 
 /*
 3.6.2 Invariant functors and the imap method

@@ -4,7 +4,7 @@ import arrow.core.*
 import arrow.instances.*
 import arrow.typeclasses.Monoid
 import arrow.typeclasses.Semigroup
-import ch01.p
+import p
 
 // 2.3 Exercise - Make Monoids
 

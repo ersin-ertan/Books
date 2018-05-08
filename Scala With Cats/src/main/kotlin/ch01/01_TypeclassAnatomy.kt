@@ -1,7 +1,5 @@
 package ch01
 
-fun Any.p() = println(this)
-fun Any.pp() = print(this)
 
 // Type classes - extend existing llibs with new functionality, without inheritance or altering original source
 // Show and Eq examples, algebraic data types, pattern matching, value classes, and type aliases

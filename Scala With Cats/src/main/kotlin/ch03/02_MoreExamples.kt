@@ -1,8 +1,8 @@
 package ch03
 
-import ch01.p
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.async
+import p
 
 /*
 mapping list option either apply functions eagerly - sequencing computations is more general
