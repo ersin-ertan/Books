@@ -37,15 +37,15 @@ interface MechBuilder<A> {
 object MechBuilderInstances { // Type class (concrete) instances
 
     val headIntMaterialBuilder: MechBuilder<Int> = object : MechBuilder<Int> {
-        override fun build(): Mech = Head(Head.EYE())
-        override fun build(upgradeMaterial: Int): Mech = Head(Head.EYE() + upgradeMaterial)
+        override fun build(): Head = Head(Head.EYE())
+        override fun build(upgradeMaterial: Int): Head = Head(upgradeMaterial)
 
     }
 
     // Body cannot be produced with Any material, ex. it must be use Metal - see below
     val bodyBuilder: MechBuilder<Metal> = object : MechBuilder<Metal> {
-        override fun build(): Mech = Body(Body.BODY())
-        override fun build(upgradeMaterial: Metal): Mech = Body(when (upgradeMaterial) {
+        override fun build(): Body = Body(Body.BODY())
+        override fun build(upgradeMaterial: Metal): Body = Body(when (upgradeMaterial) {
             Metal.GOLD -> Body.BODY() * 20
             Metal.SILVER -> Body.BODY() * 8
             Metal.BRONZE -> Body.BODY() * 3
@@ -80,7 +80,8 @@ fun buildMechBodyWithCustomMaterialBuilder(): Mech {
 }
 
 
-fun Head.build(upgradeMaterial: Int, mb: MechBuilder<Int> = MechBuilderInstances.headIntMaterialBuilder) = mb.build(upgradeMaterial + this.durability) as Head
+fun Head.build(upgradeMaterial: Int, mb: MechBuilder<Int> = MechBuilderInstances.headIntMaterialBuilder) =
+        mb.build(upgradeMaterial + this.durability) as Head
 
 fun giveMechBuildSyntax() {
 
@@ -89,6 +90,7 @@ fun giveMechBuildSyntax() {
 }
 
 fun showMechDurability() {
+
     val headShow = Show<Head> { "Head:durability:$durability" }
 
     val headInstance = MechInterfaceObject.buildMech(66, MechBuilderInstances.headIntMaterialBuilder) as Head
@@ -96,9 +98,14 @@ fun showMechDurability() {
 }
 
 fun mechEquality() {
-    val mechEq = arrow.typeclasses.Eq<Mech> { a, b -> (a.durability == b.durability) && a.javaClass.typeName == b.javaClass.typeName }
+
+    val mechEq = arrow.typeclasses.Eq<Mech> { a, b ->
+        (a.durability == b.durability) && a.javaClass.typeName == b.javaClass.typeName
+    }
+
     val h1 = Head(1).build(0)
     val h2 = h1
+
     mechEq.run { h1.eqv(h2).p() }
     mechEq.run { h1.eqv(Body(1)).p() }
 }
@@ -117,7 +124,20 @@ fun combiningMechs() {
         override fun Energy.combine(b: Energy): Energy = Energy
     }
 
-    // TODO("Use monoid and semigroup")
+    val headList = List<Head>(5, { MechBuilderInstances.headIntMaterialBuilder.build(it + 5) as Head }) // durability = 5,6,7,8,9
+    val combinedHeadMech = headList.fold(Head(0), { acc: Head, head: Head -> acc.build(head.durability) })
+    combinedHeadMech.durability.p() // 35
+
+    // with monoid
+    val combinedHeadMechMonoid = headMonoid.combineAll(*headList.toTypedArray())
+    combinedHeadMechMonoid.durability.p() // 35
+    headMonoid.empty().durability.p() // Head(0)
+
+    // with combine monoid function extension syntax
+    val combineHeadFunctionExtension = headMonoid.run { Head(1).combine(Head(2)) }
+    combineHeadFunctionExtension.durability.p() // 3
+
+    energySemigroup.run { Energy.combine(Energy) }.durability.p() // 0
 }
 
 fun main(args: Array<String>) {
@@ -132,6 +152,6 @@ fun main(args: Array<String>) {
 
 //    mechEquality()
 
-    combiningMechs()
+//    combiningMechs()
 
 }

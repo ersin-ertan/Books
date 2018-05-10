@@ -159,6 +159,8 @@ fun testOptionAdd() {
         override fun SG(): Semigroup<Int> = object : IntMonoidInstance {}
     }
 
+    // The bug has been adressed some + none will equal some, not nune
+
     "Testing the scoped function result".p()
     add(listOf(Some(1), None, Some(2), None, Some(3)), optionMonoidInstance1).run { this.p() } // returning None instead of Some(6)
     add3(listOf(Some(1), None, Some(2), None, Some(3)), optionMonoidInstance1).p() // returning None instead of Some(6)
