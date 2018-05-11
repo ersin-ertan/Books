@@ -19,7 +19,7 @@ Because structure of context is unchanged, it can be called repeatedly to sequen
 initial data structure
 list().map.map.map
 
-map sequenses computations on values ignoring complication of data type
+map sequences computations on values ignoring complication of data type
 
 future<circle> to future<star>
 

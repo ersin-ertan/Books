@@ -1,5 +1,6 @@
 package ch04
 
+import arrow.core.Id
 import arrow.core.Option
 import arrow.core.fix
 import arrow.core.monad
@@ -7,6 +8,7 @@ import arrow.data.ListK
 import arrow.data.fix
 import arrow.data.monad
 import arrow.typeclasses.binding
+import p
 
 // Every monad is also a functor, we can define map in the same way for every monad using existing methods
 // flatmap and pure
@@ -48,3 +50,42 @@ val list3 = ListK.monad().binding {
 //fun <A:Int, F : Monad<A>> sumSquare(a: F, b:F):F = a.binding { b.map{ y -> y*y} } // not quite sure about this
 
 // 4.3 The Identity Monad
+
+// useful if we could use sumSquare with params in or not in a monad. Thus we can abstract over monadic and non code.
+// We can do so with Id
+
+//fun <F<*>: Monad> sumSquare(a:F<Int>, b:F<Int>):F<Int> = ... yield x*x + y*y
+// sumSquare(3,4)
+// sumSquare(3:Id<Int>, 4:Id<Int>)
+// type Id<A> = A
+
+// Id is a type alias turning atomic type into a single param type constructor, casting any value of any type to a Id
+val name: Id<String> = Id("Dave")
+val num: Id<Int> = Id(234)
+val list: Id<List<Int>> = Id(listOf(1))
+
+fun usingId() {
+    val a = Id.monad().just(3)
+    val b = Id.monad().binding { a.bind() + 1 }
+    val c = b.fix()
+    // idea is to abstract over monadic and non code(extremely powerful) we can run code async in production using future
+    // and sync in test using id(case study ch8)
+}
+
+// 4.3.1 Exercise: Monadicc Secret Identities - implement pure, map, flatmap for Id
+fun monadicId() {
+    fun <A> pure(value: A): Id<A> = Id<A>(value)
+    fun <A, B> Id<A>.mapp(f: (A) -> B): Id<B> = pure<B>(f(this.value))
+    fun <A, B> Id<A>.flatmap(f: (A) -> Id<B>): Id<B> = f(this.value)
+
+    val v = pure(1)
+    v.p()
+    v.map { it.plus(1).toString() }.p()
+    v.mapp { it.plus(2).toString() }.p()
+    v.flatmap { i: Int -> Id((i + 3).toString()) }.p()
+    v.flatMap { i: Int -> Id((i + 4).toString()) }.p()
+}
+
+fun main(args: Array<String>) {
+    monadicId()
+}
