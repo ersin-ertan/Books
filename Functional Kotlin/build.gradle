@@ -1,8 +1,9 @@
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.41'
 
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -20,6 +21,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5'
 }
 
 compileKotlin {
@@ -27,4 +29,9 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
