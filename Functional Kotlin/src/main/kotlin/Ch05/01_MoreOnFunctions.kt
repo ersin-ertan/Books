@@ -92,5 +92,24 @@ fun testSpacebacktick() {
 // possible overrides for binary operators: plus, minus, times, div, rem, rangeTo, contains, plussAssign, ...Assign
 // ?.equals(y)?:(y===null), !(x?.equals(y) ?:(y===null)), compareTo ... <0 >0 <=0 ...
 
-// Invoke
+// Invoke - the definition of Function2 has the invoke function, which can be called without a name
+// thus we can call it on our instance like a constructor val my = My(); my() or my.invoke()
+// which is wy we can call the lambda function directly with parenthesis, due to the invoke function
+//  you can have invoke with parms too
 
+// Indexed Access - the array read-write with square brackets [], in kotlin using get-set
+// these are equiv to myArray[input]!! and myArray[index] = "new"
+
+// Unary operators - don't have parms and act directly in the dispatcher: unaryPlus-Minus, not, inc, dec both pre and postfix
+
+// Type-safe builders - define data in semi declarative way, very useful to define guis, markup, xml
+// class FxView:View(){ override val root = vbox{ label("function kotlin); button("press me") } }
+// languages have with keyword but in kotlin it is a function
+// public inline fun <T,R> with(receiver:T, block:T.()->R):R = receiver.block()
+
+// ex fun buildString(builderAction:StringBuilder.() -> Unit):String = StringBuilder().apply(builderAction).toString()
+//apply is similar to with but returns the recceiver instance instead of R, thus apply is used for initializing and instance
+// public inline fun <T> T.apply(block:T.()->Unit):T{ block(); return this }
+// or better :T = this.also{ block() } clearer semantic, but two lambdas
+
+// Creating A DSL
