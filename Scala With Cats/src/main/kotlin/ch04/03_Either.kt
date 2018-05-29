@@ -93,8 +93,30 @@ fun modelingErrors() {
 
 // 4.5 Aside: Error Handling and Monad Error
 
+// MonadError abstract over either-like data types used for error handling; providing extra operations for raising and
+// handling errors like raiseError, handleError, ensure
+// MonadError<F[_], E> extends Monad<F> Fe is the type of the monad, E is the type of error contained within F
+// typealias ErrorOr<A> = Either<String, A>
+// val monadError = MonadErrror<ErrorOr, String>
+
+// ApplicativeError - MonadError extends AppErr
+
+fun raisingAndHandlingErrors() {
+
+  val success = Either.monadError<String>().just(34)
+  val fail = Either.monadError<String>().raiseError<Int>("Wrong")
+  success.p()
+  fail.p()
+//    val fail1 = Option.monadError().handleError // not implemented
+//    val ensure = Either.monadError<String>().ensure // not implemented
+  Try.monadError().raiseError<String>(Throwable("Error")).p()
+}
+
+// 4.5.4 Exercise not yet completed in book
+
 fun main(args: Array<String>) {
 //    testCount()
 //    extensionMethods()
-    modelingErrors()
+//    modelingErrors()
+  raisingAndHandlingErrors()
 }
