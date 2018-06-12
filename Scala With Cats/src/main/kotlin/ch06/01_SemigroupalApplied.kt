@@ -24,3 +24,14 @@ package ch06
 // Semigroupal<ErrorOr>.product(Left(Vector("e1")), Left(Vector("E2"))
 // ErrorOr<Pair<Nothing,Nothing>> = Left(Vector(E1))
 // stops on first failure
+
+// 6.3.1 Semigroupal Applied to Monads
+
+// Since list and either are bothe monads, consistent semantics with Cat's monad which extends Semigroupal provides std
+// definition of product in terms of map and flatMap, thus is enexpected. But consistency of semantic is important for
+// higher level abstractions.
+// flatmap provides sequential ordering, so product is the same
+
+// Why Semigroupal? We can create data types that have instances of Semigroupal (and Applicative) but not monad.
+
+// Exercise: The Product of Monads - implement product in terms of flatmap TODO()
