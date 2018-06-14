@@ -5,6 +5,8 @@ import arrow.data.*
 import arrow.typeclasses.Semigroup
 import p
 
+// TODO("encapsulate errors into sealed types which may contain error messages")
+
 // 6.4 Validated
 // It is imposible to design a monadic data type that implements error accumulating semantics without
 // breaking consistency of product and flatMap, thus Validated, an instance of Semigroupal with no
