@@ -5,6 +5,9 @@ import arrow.core.Eval
 import arrow.core.ForOption
 import arrow.core.Option
 import arrow.data.ListK
+import arrow.data.combineK
+import arrow.data.k
+import arrow.data.monoid
 import arrow.typeclasses.Foldable
 import p
 
@@ -25,8 +28,10 @@ to plug them into our code. Gives us uses cases for Monoids and Eval
 fun main(args: Array<String>) {
 //  foldUsage()
 //  foldExercises()
-  foldableInCats()
+//  foldableInCats()
+  foldingWithMonoids()
 }
+
 
 
 fun foldUsage() {
@@ -84,4 +89,23 @@ fun foldableInCats() {
   }
 
   // folding left is eager, folding right is lazy thus uses Evals for stack safety
+}
+
+// 7.1.4.2 Folding with Monoids
+// foldable has useful methods defined on foldLeft which are familiar to find, exists, forall, toList, isEmpty, nonEmpty
+// Cats has two methods to make use of monoids
+// combineAll which combines all elements in sequence using their monoid
+// foldMap maping a user supplied func over the sequence and combines the results using monoid
+
+fun foldingWithMonoids() {
+
+  val l = listOf(1, 2, 3).k()
+  ListK.monoid<Int>().combineAll(l, l, l).p() // creates a 123123123 list
+//  ListK.monoid<String>().foldMap(l){it.toString()} // yet to exist converts each int into A and concatenates them
+
+  // we can compose foldables to support deep utraversal of nested sequences
+//  (Foldable<List> compose Foldable<Vector>).combineAll(ints)
+
+  ListK(l).combineK(listOf(5).k()).p()
+//  ListK(l).foldMap... // where is this
 }
