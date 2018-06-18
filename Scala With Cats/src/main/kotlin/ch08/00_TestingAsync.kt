@@ -47,7 +47,7 @@ interface ProductionUptimeClient : UptimeClient {
 //interface UptimeClient{ fun getUptime(hostname:String):???}
 
 interface Test1UptimeClient : UptimeClient {
-  override fun getUptime(hostname: String): Int
+//  override fun getUptime(hostname: String): Int
   // want to retain int from each type but throw away Future, thus Identity type Id
   // can wrap types in a type constructor without changing meaning
 
@@ -56,7 +56,7 @@ interface Test1UptimeClient : UptimeClient {
   // write out the method signatures for getUptime in each case to verify compile
 }
 
-interface UptimeClient1<F> : {
+interface UptimeClient1<F> {
   fun getUptime(hostname: String): F//<Int>
 }
 /*
