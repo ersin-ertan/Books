@@ -99,9 +99,17 @@ fun <A,B:Monoid<*>> foldMap(values:ListK<A>, func:(A)->B):B =
 * Await.result(result, 1.second)
 * */
 
-// can reuse def of foldMap for more consise solution - local maps and reduces in step 3 and 4 are a single flodMap
+// can reuse def of foldMap for more concise solution - local maps and reduces in step 3 and 4 are a single flodMap
 
 // or use Foldable type class
+
+// 9.3.4 parallelFoldMap - also available as part of foldable type class
+// reimplement pfm suing foldable and traversable
+
+// Summary - bach data and send one batch per node, perform a local map-reduce on each batch, combine results using
+// monoid. If batching is not needed, we can map using Functor and reduce using Monoid. Most data science
+// tasks can be cast as monoids like: bloom filers, set cardinality estimators(hyperLogLog algo)
+// vectors and vector operations like stochastic gradient descent, quantile estimators(t-digest)
 
 fun main(args: Array<String>) {
 //  listOf(1,2,3).k().traverse(Option.applicative(), {it})
